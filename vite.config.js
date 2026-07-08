@@ -4,10 +4,10 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   plugins: [react()],
   server: {
-    port: 5173,
+    port: 10000,
     proxy: {
-      "/api": "http://localhost:5000",
-      "/uploads": "http://localhost:5000",
+      "/api": "https://trendify-backend-p94u.onrender.com",
+      "/uploads": "https://trendify-backend-p94u.onrender.com",
     },
   },
 });
