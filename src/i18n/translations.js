@@ -92,6 +92,12 @@ const translations = {
   // About page
   "about.title": { en: "About Us", hi: "हमारे बारे में", gu: "અમારા વિશે" },
 
+  // Sitemap page
+  "sitemap.title": { en: "Sitemap", hi: "साइटमैप", gu: "સાઇટમેપ" },
+  "sitemap.pages": { en: "Pages", hi: "पेज", gu: "પૃષ્ઠો" },
+  "sitemap.categories": { en: "Categories", hi: "श्रेणियाँ", gu: "શ્રેણીઓ" },
+  "sitemap.recentArticles": { en: "Recent Articles", hi: "हाल के लेख", gu: "તાજેતરના લેખો" },
+
   // Common
   "common.readMore": { en: "Read More", hi: "और पढ़ें", gu: "વધુ વાંચો" },
   "common.loading": { en: "Loading…", hi: "लोड हो रहा है…", gu: "લોડ થઈ રહ્યું છે…" },

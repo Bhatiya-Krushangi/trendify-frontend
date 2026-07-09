@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || "http://localhost:5000/api",
+  baseURL: import.meta.env.VITE_API_URL || "https://trendify-backend-p94u.onrender.com/api",
 });
 
 api.interceptors.request.use((config) => {
@@ -30,7 +30,7 @@ api.interceptors.response.use(
 export const assetUrl = (path) => {
   if (!path) return "";
   if (path.startsWith("http")) return path;
-  const base = import.meta.env.VITE_UPLOADS_URL || "http://localhost:5000";
+  const base = import.meta.env.VITE_UPLOADS_URL || "https://trendify-backend-p94u.onrender.com";
   return `${base}${path}`;
 };
 
