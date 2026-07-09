@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Plus, UploadCloud } from "lucide-react";
+import { Plus, UploadCloud, GripVertical } from "lucide-react";
 import api, { assetUrl } from "../../api/axios";
 
 const ICONS = ["Globe", "Briefcase", "Trophy", "Clapperboard", "Heart", "HeartPulse", "Plane", "Newspaper", "Cpu", "Gamepad2"];
@@ -8,6 +8,7 @@ const emptyForm = { name: "", slug: "", description: "", icon: "Globe", color: "
 
 const Categories = () => {
   const [categories, setCategories] = useState([]);
+  const [draggedIndex, setDraggedIndex] = useState(null);
   const [form, setForm] = useState(emptyForm);
   const [editingId, setEditingId] = useState(null);
   const [error, setError] = useState("");
@@ -15,6 +16,38 @@ const Categories = () => {
 
   const load = () => api.get("/categories").then(({ data }) => setCategories(data));
   useEffect(() => { load(); }, []);
+
+  const handleDragStart = (e, index) => {
+    setDraggedIndex(index);
+    e.dataTransfer.effectAllowed = "move";
+    e.dataTransfer.setData("text/html", e.currentTarget);
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+  };
+
+  const handleDragEnter = (index) => {
+    if (draggedIndex === null || draggedIndex === index) return;
+    const reordered = [...categories];
+    const draggedItem = reordered[draggedIndex];
+    reordered.splice(draggedIndex, 1);
+    reordered.splice(index, 0, draggedItem);
+    setDraggedIndex(index);
+    setCategories(reordered);
+  };
+
+  const handleDragEnd = async () => {
+    setDraggedIndex(null);
+    try {
+      const orders = categories.map((c, index) => ({ id: c._id, order: index }));
+      await api.put("/categories/reorder", { orders });
+    } catch (err) {
+      console.error("Failed to reorder categories", err);
+      alert(err.response?.data?.message || "Failed to save category order");
+      load();
+    }
+  };
 
   const submit = async (e) => {
     e.preventDefault();
@@ -159,6 +192,7 @@ const Categories = () => {
           <table className="w-full text-sm">
             <thead>
               <tr className="text-left text-slate-400 border-b border-slate-100">
+                <th className="p-4 w-10"></th>
                 <th className="p-4 font-medium">Name</th>
                 <th className="p-4 font-medium">Slug</th>
                 <th className="p-4 font-medium">Articles</th>
@@ -166,8 +200,21 @@ const Categories = () => {
               </tr>
             </thead>
             <tbody>
-              {categories.map((c) => (
-                <tr key={c._id} className="border-b border-slate-50">
+              {categories.map((c, index) => (
+                <tr
+                  key={c._id}
+                  draggable
+                  onDragStart={(e) => handleDragStart(e, index)}
+                  onDragOver={handleDragOver}
+                  onDragEnter={() => handleDragEnter(index)}
+                  onDragEnd={handleDragEnd}
+                  className={`border-b border-slate-50 transition-colors duration-150 ${
+                    draggedIndex === index ? "opacity-35 bg-slate-100" : "hover:bg-slate-50/50"
+                  }`}
+                >
+                  <td className="p-4 text-slate-400 cursor-grab active:cursor-grabbing w-10">
+                    <GripVertical size={16} />
+                  </td>
                   <td className="p-4 font-medium flex items-center gap-3">
                     {c.image ? (
                       <img src={assetUrl(c.image)} alt={c.name} className="w-10 h-8 object-cover rounded border border-slate-200 shrink-0" />
