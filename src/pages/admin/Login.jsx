@@ -32,7 +32,7 @@ const Login = () => {
           <div className="w-12 h-12 rounded-full bg-brand-600 text-white flex items-center justify-center mb-3">
             <Lock size={20} />
           </div>
-          <h1 className="font-display text-xl font-bold">TrendPluse Admin</h1>
+          <h1 className="font-display text-xl font-bold">NexTrendX Admin</h1>
           <p className="text-sm text-slate-400">Sign in to manage your site</p>
         </div>
         <form onSubmit={submit} className="flex flex-col gap-3">

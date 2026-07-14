@@ -58,7 +58,7 @@ const SearchResults = () => {
           {t("search.title")}
         </h1>
         <p className="text-slate-500 dark:text-slate-400 mb-6">
-          {t("search.subtitle")} {settings?.logoText || "TrendPluse"}.
+          {t("search.subtitle")} {settings?.logoText || "NexTrendX"}.
         </p>
         <div className="relative max-w-lg mx-auto">
             <SearchIcon size={17} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />

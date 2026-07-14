@@ -52,7 +52,7 @@ const Contact = () => {
             <Mail size={18} className="text-brand-600 mt-0.5" />
             <div>
               <p className="font-semibold text-sm text-ink dark:text-white">{t("contact.email")}</p>
-              <p className="text-sm text-slate-500 dark:text-slate-400">{settings?.contactEmail || "contact@trendpluse.com"}</p>
+              <p className="text-sm text-slate-500 dark:text-slate-400">{settings?.contactEmail || "nextrendx.contact@gmail.com"}</p>
             </div>  
           </div>
           <div className="flex items-start gap-3 card-surface p-4">

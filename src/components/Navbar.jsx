@@ -59,7 +59,7 @@ const Navbar = () => {
     <header className="sticky top-0 z-40 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 transition-colors duration-200">
       <div className="container-page flex items-center justify-between py-3.5">
         <Link to="/" className="font-display text-2xl font-bold text-ink dark:text-white shrink-0">
-          {settings?.logoText || "TrendPluse"}
+          {settings?.logoText || "NexTrendX"}
           <span className="text-brand-600 dark:text-brand-400">.</span>
         </Link>
 

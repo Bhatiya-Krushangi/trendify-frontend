@@ -3,8 +3,8 @@ import Translate from "../components/Translate";
 
 const Terms = () => {
   const { settings } = useSettings();
-  const siteName = settings?.logoText || "TrendPluse";
-  const email = settings?.contactEmail || "contact@trendpluse.com";
+  const siteName = settings?.logoText || "NexTrendX";
+  const email = settings?.contactEmail || "nextrendx.contact@gmail.com";
 
   return (
     <div className="max-w-3xl mx-auto py-6">

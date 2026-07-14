@@ -20,7 +20,7 @@ const AdminSidebar = () => {
   return (
     <aside className="w-60 shrink-0 bg-ink text-slate-300 flex flex-col min-h-screen">
       <div className="px-5 py-5 border-b border-white/10">
-        <span className="font-display text-xl font-bold text-white">TrendPluse</span>
+        <span className="font-display text-xl font-bold text-white">NexTrendX</span>
         <span className="text-brand-500">.</span>
       </div>
       <nav className="flex-1 px-3 py-4 flex flex-col gap-1">

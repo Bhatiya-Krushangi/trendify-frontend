@@ -13,7 +13,7 @@ const About = () => {
       </h1>
       <div className="prose-content">
         <p>
-          {settings?.logoText || "TrendPluse"}{" "}
+          {settings?.logoText || "NexTrendX"}{" "}
           <Translate>
             is an independent news and trends publication covering world affairs, business, sports, entertainment, lifestyle, health, and travel. Our mission is simple: deliver accurate, timely, and well-sourced stories that help readers make sense of a fast-moving world.
           </Translate>
@@ -39,7 +39,7 @@ const About = () => {
           <Translate>Advertising</Translate>
         </h2>
         <p>
-          {settings?.logoText || "TrendPluse"}{" "}
+          {settings?.logoText || "NexTrendX"}{" "}
           <Translate>
             is supported in part by advertising, including Google AdSense, which helps keep our reporting free and accessible to everyone. Advertising does not influence our editorial coverage. See our
           </Translate>{" "}

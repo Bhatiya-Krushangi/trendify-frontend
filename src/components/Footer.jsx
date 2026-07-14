@@ -15,7 +15,7 @@ const Footer = () => {
       <div className="container-page py-12 grid grid-cols-1 sm:grid-cols-3 gap-10">
         <div>
           <h3 className="font-display text-xl font-bold text-white mb-3">
-            {settings?.logoText || "TrendPluse"}
+            {settings?.logoText || "NexTrendX"}
           </h3>
           <p className="text-sm text-slate-400 leading-relaxed">
             <Translate>{settings?.tagline || defaultTagline}</Translate>
@@ -65,7 +65,7 @@ const Footer = () => {
       </div>
 
       <div className="border-t border-white/10 py-4 text-center text-xs text-slate-500">
-        © {new Date().getFullYear()} {settings?.logoText || "TrendPluse"}. {t("footer.allRights")}
+        © {new Date().getFullYear()} {settings?.logoText || "NexTrendX"}. {t("footer.allRights")}
       </div>
     </footer>
   );
