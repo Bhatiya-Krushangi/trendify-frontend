@@ -28,7 +28,7 @@ const Home = () => {
   const adsEnabled = !!settings?.adsenseEnabled && !!settings?.adsenseClientId;
 
   useEffect(() => {
-    api.get("/posts", { params: { limit: 5, sort: "-createdAt" } }).then(({ data }) => {
+    api.get("/posts", { params: { limit: 5 } }).then(({ data }) => {
       setFeatured(data.posts[0] || null);
       setSideStories(data.posts.slice(1, 5));
     });
