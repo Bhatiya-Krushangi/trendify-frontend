@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Clock, Globe, Briefcase, Trophy, Clapperboard, Heart, HeartPulse, Plane, ArrowRight } from "lucide-react";
+import { Globe, Briefcase, Trophy, Clapperboard, Heart, HeartPulse, Plane, ArrowRight } from "lucide-react";
 import api from "../api/axios";
 import NewsCard from "../components/NewsCard";
 import Sidebar from "../components/Sidebar";
@@ -16,8 +16,7 @@ const ICONS = {
 
 const FALLBACK_IMG = "https://images.unsplash.com/photo-1495020689067-958852a7765e?q=80&w=1200&auto=format&fit=crop";
 
-const formatDate = (d) =>
-  new Date(d).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+
 
 const Home = () => {
   const [featured, setFeatured] = useState(null);
@@ -62,9 +61,7 @@ const Home = () => {
                 <h1 className="text-2xl md:text-3xl font-display font-bold leading-tight mb-3">
                   <Translate>{featured.title}</Translate>
                 </h1>
-                <p className="text-sm text-slate-300 flex items-center gap-1 mb-2">
-                  {t("home.by")} {featured.author} · {formatDate(featured.createdAt)}
-                </p>
+
                 <p className="text-sm text-slate-200 line-clamp-2 max-w-xl">
                   <Translate>{featured.excerpt}</Translate>
                 </p>
@@ -91,9 +88,7 @@ const Home = () => {
                   <p className="text-sm font-semibold leading-snug line-clamp-2 text-ink dark:text-slate-100 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
                     <Translate>{post.title}</Translate>
                   </p>
-                  <p className="text-xs text-slate-400 dark:text-slate-500 mt-1 flex items-center gap-1">
-                    <Clock size={11} /> {formatDate(post.createdAt)}
-                  </p>
+
                 </div>
               </Link>
             ))}

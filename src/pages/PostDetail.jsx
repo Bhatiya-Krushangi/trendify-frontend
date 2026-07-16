@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { Clock, User, Facebook, Twitter, Linkedin, Send, LogOut } from "lucide-react";
+import { Facebook, Twitter, Linkedin, Send, LogOut } from "lucide-react";
 import api, { assetUrl } from "../api/axios";
 import Sidebar from "../components/Sidebar";
 import NewsCard from "../components/NewsCard";
@@ -105,11 +105,7 @@ const PostDetail = () => {
         <h1 className="text-2xl md:text-4xl font-display font-bold leading-tight mb-4 text-ink dark:text-white">
           <Translate>{post.title}</Translate>
         </h1>
-        <div className="flex items-center gap-4 text-sm text-slate-500 dark:text-slate-400 mb-6">
-          <span className="flex items-center gap-1"><User size={14} /> {post.author}</span>
-          <span className="flex items-center gap-1"><Clock size={14} /> {formatDate(post.createdAt)}</span>
-          <span>{post.views} {t("post.views")}</span>
-        </div>
+
 
         <img
           src={post.coverImage ? assetUrl(post.coverImage) : FALLBACK_IMG}
