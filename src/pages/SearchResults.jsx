@@ -126,8 +126,8 @@ const SearchResults = () => {
               {loading
                 ? t("search.searching")
                 : showingDefault
-                ? `${t("search.recentArticles")} ${total > 0 ? `(${total})` : ""}`
-                : `${total} ${total === 1 ? t("search.results") : t("search.resultsPlural")} ${t("search.for")} "${q}"`}
+                  ? t("search.recentArticles")
+                  : `${total} ${total === 1 ? t("search.results") : t("search.resultsPlural")} ${t("search.for")} "${q}"`}
             </h2>
             {!loading && pages > 1 && (
               <span className="text-sm text-slate-400 dark:text-slate-500">
@@ -183,11 +183,10 @@ const SearchResults = () => {
                   <button
                     key={p}
                     onClick={() => goToPage(p)}
-                    className={`w-9 h-9 rounded-md text-sm font-medium transition-colors ${
-                      p === page
-                        ? "bg-brand-600 text-white shadow-sm"
-                        : "bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700"
-                    }`}
+                    className={`w-9 h-9 rounded-md text-sm font-medium transition-colors ${p === page
+                      ? "bg-brand-600 text-white shadow-sm"
+                      : "bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700"
+                      }`}
                   >
                     {p}
                   </button>
