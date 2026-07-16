@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { FileText, FolderTree, Users, MessageSquare, Eye } from "lucide-react";
+import { FileText, FolderTree, Users, MessageSquare, Eye, RotateCcw } from "lucide-react";
 import api from "../../api/axios";
 
 const StatCard = ({ label, value, icon: Icon, color }) => (
@@ -17,10 +17,25 @@ const formatDate = (d) => new Date(d).toLocaleDateString("en-US", { month: "long
 
 const Dashboard = () => {
   const [stats, setStats] = useState(null);
+  const [resetting, setResetting] = useState(false);
 
-  useEffect(() => {
+  const loadStats = () =>
     api.get("/dashboard/stats").then(({ data }) => setStats(data));
-  }, []);
+
+  useEffect(() => { loadStats(); }, []);
+
+  const resetViews = async () => {
+    if (!confirm("Reset ALL post views to 0? This cannot be undone.")) return;
+    setResetting(true);
+    try {
+      await api.post("/posts/admin/reset-views");
+      await loadStats(); // refresh dashboard numbers
+    } catch {
+      alert("Failed to reset views. Please try again.");
+    } finally {
+      setResetting(false);
+    }
+  };
 
   if (!stats) return <p className="text-slate-400">Loading dashboard…</p>;
 
@@ -85,6 +100,18 @@ const Dashboard = () => {
             <Link to="/admin/users" className="inline-block text-sm text-brand-600 hover:underline">
               Manage users →
             </Link>
+          </div>
+
+          {/* Danger zone */}
+          <div className="mt-5 pt-4 border-t border-slate-100">
+            <button
+              onClick={resetViews}
+              disabled={resetting}
+              className="flex items-center gap-1.5 text-xs font-medium text-red-500 hover:text-red-700 disabled:opacity-50 transition-colors"
+            >
+              <RotateCcw size={13} />
+              {resetting ? "Resetting…" : "Reset all views to 0"}
+            </button>
           </div>
         </div>
       </div>
