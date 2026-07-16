@@ -13,8 +13,7 @@ import Translate from "../components/Translate";
 
 const FALLBACK_IMG = "https://images.unsplash.com/photo-1495020689067-958852a7765e?q=80&w=1200&auto=format&fit=crop";
 
-const formatDate = (d) =>
-  new Date(d).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+
 
 const PostDetail = () => {
   const { slug } = useParams();
@@ -156,7 +155,6 @@ const PostDetail = () => {
               <div key={c._id} className="card-surface p-4">
                 <div className="flex items-center justify-between mb-1">
                   <span className="font-semibold text-sm text-ink dark:text-slate-100">{c.name}</span>
-                  <span className="text-xs text-slate-400 dark:text-slate-500">{formatDate(c.createdAt)}</span>
                 </div>
                 <p className="text-sm text-slate-600 dark:text-slate-300">
                   <Translate>{c.content}</Translate>

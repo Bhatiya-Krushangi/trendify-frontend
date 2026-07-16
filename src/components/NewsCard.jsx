@@ -1,12 +1,8 @@
 import { Link } from "react-router-dom";
-import { Clock } from "lucide-react";
 import { assetUrl } from "../api/axios";
 import Translate from "./Translate";
 
 const FALLBACK_IMG = "https://images.unsplash.com/photo-1495020689067-958852a7765e?q=80&w=800&auto=format&fit=crop";
-
-const formatDate = (d) =>
-  new Date(d).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
 
 const NewsCard = ({ post, variant = "default" }) => {
   if (!post) return null;
@@ -20,9 +16,6 @@ const NewsCard = ({ post, variant = "default" }) => {
         <div>
           <p className="text-sm font-semibold text-ink dark:text-slate-100 leading-snug line-clamp-2 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
             <Translate>{post.title}</Translate>
-          </p>
-          <p className="text-xs text-slate-400 dark:text-slate-500 mt-1 flex items-center gap-1">
-            <Clock size={11} /> {formatDate(post.createdAt)}
           </p>
         </div>
       </Link>
@@ -49,13 +42,8 @@ const NewsCard = ({ post, variant = "default" }) => {
           <Translate>{post.title}</Translate>
         </Link>
       </h3>
-
-      <p className="text-xs text-slate-400 dark:text-slate-500 flex items-center gap-1">
-        <Clock size={11} /> {formatDate(post.createdAt)}
-      </p>
     </article>
   );
 };
 
 export default NewsCard;
-
