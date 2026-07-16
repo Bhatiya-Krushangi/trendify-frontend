@@ -61,8 +61,10 @@ const AddEditPost = () => {
     e.preventDefault();
     setError("");
     setSaving(true);
+    // Strip read-only fields so edit-saves never reset views/slug in the DB
+    const { views: _views, _id: _id_, slug: _slug, ...rest } = form;
     const payload = {
-      ...form,
+      ...rest,
       tags: form.tags.split(",").map((t) => t.trim()).filter(Boolean),
     };
     try {
