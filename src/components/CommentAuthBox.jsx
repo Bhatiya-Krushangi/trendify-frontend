@@ -3,7 +3,7 @@ import { LogIn, UserPlus } from "lucide-react";
 import { useUserAuth } from "../context/UserAuthContext";
 
 const inputClass =
-  "w-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-ink dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500";
+  "w-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500";
 
 // Shown in place of the comment form when no commenter account is signed in.
 // Deliberately minimal — this is only an identity gate for commenting, not a full account system.
@@ -35,7 +35,7 @@ const CommentAuthBox = () => {
     <div className="card-surface p-5">
       <div className="flex items-center gap-2 mb-4">
         {mode === "login" ? <LogIn size={17} className="text-brand-600 dark:text-brand-400" /> : <UserPlus size={17} className="text-brand-600 dark:text-brand-400" />}
-        <h3 className="font-semibold text-ink dark:text-white">
+        <h3 className="font-semibold text-slate-900 dark:text-white">
           {mode === "login" ? "Sign in to comment" : "Create an account to comment"}
         </h3>
       </div>

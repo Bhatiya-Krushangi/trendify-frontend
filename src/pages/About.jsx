@@ -8,7 +8,7 @@ const About = () => {
 
   return (
     <div className="max-w-3xl mx-auto py-6">
-      <h1 className="text-3xl font-display font-bold mb-6 text-ink dark:text-white">
+      <h1 className="text-3xl font-display font-bold mb-6 text-slate-900 dark:text-white">
         {t("about.title")} {settings?.logoText || "TrendPluse"}
       </h1>
       <div className="prose-content">

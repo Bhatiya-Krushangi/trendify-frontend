@@ -6,7 +6,7 @@ const AdminLayout = () => {
   const { admin } = useAuth();
 
   return (
-    <div className="flex bg-slate-100 min-h-screen">
+    <div className="admin-layout flex bg-slate-100 min-h-screen text-slate-800">
       <AdminSidebar />
       <div className="flex-1 flex flex-col">
         <header className="bg-white border-b border-slate-200 px-6 py-3.5 flex items-center justify-between">
@@ -20,7 +20,7 @@ const AdminLayout = () => {
             </div>
           </div>
         </header>
-        <main className="flex-1 p-6">
+        <main className="flex-1 p-6 text-slate-800">
           <Outlet />
         </main>
       </div>

@@ -3,7 +3,7 @@ import { X, LogIn, UserPlus } from "lucide-react";
 import { useUserAuth } from "../context/UserAuthContext";
 
 const inputClass =
-  "w-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-ink dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 transition";
+  "w-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 transition";
 
 /**
  * LoginDialog — modal overlay for login / register.

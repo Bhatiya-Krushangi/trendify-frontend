@@ -91,7 +91,7 @@ const SearchResults = () => {
   return (
     <div className="flex flex-col gap-8">
       <div className="max-w-2xl mx-auto w-full text-center py-4">
-        <h1 className="text-2xl md:text-3xl font-display font-bold mb-2 text-ink dark:text-white">
+        <h1 className="text-2xl md:text-3xl font-display font-bold mb-2 text-slate-900 dark:text-white">
           {t("search.title")}
         </h1>
         <p className="text-slate-500 dark:text-slate-400 mb-6">
@@ -104,7 +104,7 @@ const SearchResults = () => {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder={t("search.placeholder")}
-            className="w-full pl-11 pr-9 py-3 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-ink dark:text-slate-100 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 shadow-sm"
+            className="w-full pl-11 pr-9 py-3 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 shadow-sm"
           />
           {input && (
             <button
@@ -122,7 +122,7 @@ const SearchResults = () => {
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-8 items-start">
         <div>
           <div className="flex items-center justify-between mb-5">
-            <h2 className="text-lg font-bold text-ink dark:text-white">
+            <h2 className="text-lg font-bold text-slate-900 dark:text-white">
               {loading
                 ? t("search.searching")
                 : showingDefault

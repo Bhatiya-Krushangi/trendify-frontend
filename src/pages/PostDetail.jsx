@@ -90,7 +90,7 @@ const PostDetail = () => {
 
   const shareUrl = typeof window !== "undefined" ? window.location.href : "";
   const inputClass =
-    "border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-ink dark:text-slate-100 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 placeholder:text-slate-400 dark:placeholder:text-slate-500";
+    "border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 placeholder:text-slate-400 dark:placeholder:text-slate-500";
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-8 items-start">
@@ -101,7 +101,7 @@ const PostDetail = () => {
         >
           <Translate>{post.category?.name}</Translate>
         </span>
-        <h1 className="text-2xl md:text-4xl font-display font-bold leading-tight mb-4 text-ink dark:text-white">
+        <h1 className="text-2xl md:text-4xl font-display font-bold leading-tight mb-4 text-slate-900 dark:text-white">
           <Translate>{post.title}</Translate>
         </h1>
 
@@ -139,7 +139,7 @@ const PostDetail = () => {
 
         {related.length > 0 && (
           <section className="mt-10">
-            <h2 className="text-xl font-bold border-l-4 border-brand-600 pl-3 mb-5 text-ink dark:text-white">{t("post.relatedArticles")}</h2>
+            <h2 className="text-xl font-bold border-l-4 border-brand-600 pl-3 mb-5 text-slate-900 dark:text-white">{t("post.relatedArticles")}</h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
               {related.map((p) => <NewsCard key={p._id} post={p} />)}
             </div>
@@ -147,14 +147,14 @@ const PostDetail = () => {
         )}
 
         <section className="mt-10">
-          <h2 className="text-xl font-bold border-l-4 border-brand-600 pl-3 mb-5 text-ink dark:text-white">
+          <h2 className="text-xl font-bold border-l-4 border-brand-600 pl-3 mb-5 text-slate-900 dark:text-white">
             {t("post.comments")} ({comments.length})
           </h2>
           <div className="flex flex-col gap-4 mb-8">
             {comments.map((c) => (
               <div key={c._id} className="card-surface p-4">
                 <div className="flex items-center justify-between mb-1">
-                  <span className="font-semibold text-sm text-ink dark:text-slate-100">{c.name}</span>
+                  <span className="font-semibold text-sm text-slate-900 dark:text-slate-100">{c.name}</span>
                 </div>
                 <p className="text-sm text-slate-600 dark:text-slate-300">
                   <Translate>{c.content}</Translate>
@@ -174,7 +174,7 @@ const PostDetail = () => {
           )}
 
           <form onSubmit={submitComment} className="card-surface p-5 flex flex-col gap-3">
-            <h3 className="font-semibold text-ink dark:text-white">{t("post.leaveComment")}</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white">{t("post.leaveComment")}</h3>
             <textarea
               rows={3}
               placeholder={t("post.writeComment")}

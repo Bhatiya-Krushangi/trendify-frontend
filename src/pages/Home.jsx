@@ -85,7 +85,7 @@ const Home = () => {
                   <span className="text-[10px] font-bold uppercase tracking-wide" style={{ color: post.category?.color }}>
                     <Translate>{post.category?.name}</Translate>
                   </span>
-                  <p className="text-sm font-semibold leading-snug line-clamp-2 text-ink dark:text-slate-100 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
+                  <p className="text-sm font-semibold leading-snug line-clamp-2 text-slate-900 dark:text-slate-100 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
                     <Translate>{post.title}</Translate>
                   </p>
 
@@ -100,7 +100,7 @@ const Home = () => {
 
       <section>
         <div className="flex items-center justify-between mb-5">
-          <h2 className="text-xl font-bold border-l-4 border-brand-600 pl-3 text-ink dark:text-white">{t("home.latestNews")}</h2>
+          <h2 className="text-xl font-bold border-l-4 border-brand-600 pl-3 text-slate-900 dark:text-white">{t("home.latestNews")}</h2>
           <Link to="/search" className="text-sm font-medium text-brand-600 dark:text-brand-400 flex items-center gap-1 hover:underline">
             {t("home.viewAll")} <ArrowRight size={14} />
           </Link>
@@ -129,7 +129,7 @@ const Home = () => {
       />
 
       <section>
-        <h2 className="text-xl font-bold border-l-4 border-brand-600 pl-3 mb-5 text-ink dark:text-white">{t("home.featuredCategories")}</h2>
+        <h2 className="text-xl font-bold border-l-4 border-brand-600 pl-3 mb-5 text-slate-900 dark:text-white">{t("home.featuredCategories")}</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3">
           {categories.map((cat) => {
             const Icon = ICONS[cat.icon] || Globe;

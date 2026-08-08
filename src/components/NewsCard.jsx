@@ -14,7 +14,7 @@ const NewsCard = ({ post, variant = "default" }) => {
       <Link to={`/post/${post.slug}`} className="flex gap-3 group">
         <img src={img} alt={post.title} className="w-20 h-16 object-cover rounded-md shrink-0" />
         <div>
-          <p className="text-sm font-semibold text-ink dark:text-slate-100 leading-snug line-clamp-2 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
+          <p className="text-sm font-semibold text-slate-900 dark:text-slate-100 leading-snug line-clamp-2 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
             <Translate>{post.title}</Translate>
           </p>
         </div>
@@ -37,7 +37,7 @@ const NewsCard = ({ post, variant = "default" }) => {
       >
         <Translate>{post.category?.name}</Translate>
       </span>
-      <h3 className="font-semibold text-ink dark:text-slate-100 leading-snug mb-1.5 line-clamp-2">
+      <h3 className="font-semibold text-slate-900 dark:text-slate-100 leading-snug mb-1.5 line-clamp-2">
         <Link to={`/post/${post.slug}`} className="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
           <Translate>{post.title}</Translate>
         </Link>

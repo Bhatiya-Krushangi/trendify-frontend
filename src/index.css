@@ -7,7 +7,7 @@ html {
 }
 
 body {
-  @apply bg-slate-50 text-ink font-sans antialiased transition-colors duration-200;
+  @apply bg-slate-50 text-slate-900 font-sans antialiased transition-colors duration-200;
 }
 
 .dark body {
@@ -43,10 +43,10 @@ h1, h2, h3, h4, .font-display {
   @apply mb-4 leading-relaxed text-slate-700 dark:text-slate-300;
 }
 .prose-content h2 {
-  @apply text-2xl font-bold mt-8 mb-3 text-ink dark:text-white;
+  @apply text-2xl font-bold mt-8 mb-3 text-slate-900 dark:text-white;
 }
 .prose-content h3 {
-  @apply text-xl font-bold mt-6 mb-2 text-ink dark:text-white;
+  @apply text-xl font-bold mt-6 mb-2 text-slate-900 dark:text-white;
 }
 .prose-content a {
   @apply text-brand-600 dark:text-brand-400 underline;
@@ -71,4 +71,16 @@ h1, h2, h3, h4, .font-display {
 .ql-editor {
   min-height: 260px;
   font-size: 15px;
+}
+
+/* Force admin panel to always render in light mode (white card backgrounds) */
+.admin-layout {
+  color: #1e293b;
+}
+
+.admin-layout input,
+.admin-layout textarea,
+.admin-layout select {
+  color: #1e293b;
+  background-color: #ffffff;
 }

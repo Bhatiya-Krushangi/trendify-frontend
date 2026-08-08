@@ -8,7 +8,7 @@ const Terms = () => {
 
   return (
     <div className="max-w-3xl mx-auto py-6">
-      <h1 className="text-3xl font-display font-bold mb-2 text-ink dark:text-white">
+      <h1 className="text-3xl font-display font-bold mb-2 text-slate-900 dark:text-white">
         <Translate>Terms &amp; Conditions</Translate>
       </h1>
       <p className="text-sm text-slate-400 dark:text-slate-500 mb-8">

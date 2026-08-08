@@ -35,7 +35,7 @@ const CategoryPage = () => {
           <span className="text-xs font-bold uppercase tracking-wide" style={{ color: category?.color || "#4f46e5" }}>
             {t("category.label")}
           </span>
-          <h1 className="text-2xl md:text-3xl font-display font-bold mt-1 text-ink dark:text-white">
+          <h1 className="text-2xl md:text-3xl font-display font-bold mt-1 text-slate-900 dark:text-white">
             <Translate>{category?.name || slug}</Translate>
           </h1>
           {category?.description && (
