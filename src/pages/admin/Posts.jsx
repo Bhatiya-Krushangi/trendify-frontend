@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { Plus, Pencil, Trash2, Search, GripVertical, Save } from "lucide-react";
-import api from "../../api/axios";
+import { Plus, Pencil, Trash2, Search, GripVertical, Save, ImageOff } from "lucide-react";
+import api, { assetUrl } from "../../api/axios";
 
 const formatDate = (d) =>
   new Date(d).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
@@ -132,10 +132,11 @@ const Posts = () => {
       </div>
 
       <div className="bg-white rounded-xl border border-slate-200 overflow-x-auto">
-        <table className="w-full text-sm min-w-[700px]">
+        <table className="w-full text-sm min-w-[820px]">
           <thead>
             <tr className="text-left text-slate-400 border-b border-slate-100">
               <th className="p-4 font-medium w-8"></th>
+              <th className="p-4 font-medium w-20">Thumbnail</th>
               <th className="p-4 font-medium">Title</th>
               <th className="p-4 font-medium">Category</th>
               <th className="p-4 font-medium">Date</th>
@@ -147,14 +148,14 @@ const Posts = () => {
           <tbody>
             {loading && (
               <tr>
-                <td colSpan={7} className="p-6 text-center text-slate-400">
+                <td colSpan={8} className="p-6 text-center text-slate-400">
                   Loading…
                 </td>
               </tr>
             )}
             {!loading && filtered.length === 0 && (
               <tr>
-                <td colSpan={7} className="p-6 text-center text-slate-400">
+                <td colSpan={8} className="p-6 text-center text-slate-400">
                   No posts found.
                 </td>
               </tr>
@@ -175,7 +176,21 @@ const Posts = () => {
                 <td className="p-4 text-slate-300 hover:text-slate-500 cursor-grab active:cursor-grabbing">
                   <GripVertical size={16} />
                 </td>
-                <td className="p-4 max-w-[260px] truncate font-medium">{p.title}</td>
+                {/* Thumbnail */}
+                <td className="p-3">
+                  {(p.thumbnailImage || p.coverImage) ? (
+                    <img
+                      src={assetUrl(p.thumbnailImage || p.coverImage)}
+                      alt={p.title}
+                      className="w-14 h-10 object-cover rounded-md shrink-0 border border-slate-100"
+                    />
+                  ) : (
+                    <div className="w-14 h-10 bg-slate-100 rounded-md flex items-center justify-center text-slate-300">
+                      <ImageOff size={14} />
+                    </div>
+                  )}
+                </td>
+                <td className="p-4 max-w-[220px] truncate font-medium">{p.title}</td>
                 <td className="p-4 text-slate-500">{p.category?.name}</td>
                 <td className="p-4 text-slate-500">{formatDate(p.createdAt)}</td>
                 <td className="p-4 text-slate-500">{p.views}</td>

@@ -193,6 +193,27 @@ const Navbar = () => {
         </div>
       </div>
 
+      {/* ── Animated tagline strip ── */}
+      <div className="relative overflow-hidden border-t border-slate-100 dark:border-slate-800 bg-gradient-to-r from-brand-50 via-white to-brand-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 py-1.5 select-none">
+        {/* left fade */}
+        <div className="pointer-events-none absolute left-0 top-0 h-full w-16 z-10 bg-gradient-to-r from-brand-50 dark:from-slate-900 to-transparent" />
+        {/* right fade */}
+        <div className="pointer-events-none absolute right-0 top-0 h-full w-16 z-10 bg-gradient-to-l from-brand-50 dark:from-slate-900 to-transparent" />
+
+        <div className="tagline-ticker-track">
+          {[0, 1].map((i) => (
+            <span key={i} className="flex items-center gap-2 px-8 text-[11px] font-medium tracking-wide text-slate-500 dark:text-slate-400 whitespace-nowrap">
+              <span className="inline-block w-1.5 h-1.5 rounded-full bg-brand-500 animate-pulse shrink-0" />
+              <span className="font-bold text-slate-700 dark:text-slate-200">NexTrendX</span>
+              <span className="text-slate-400 dark:text-slate-500 mx-1">—</span>
+              Latest Indian news, trending stories and clear explainers — updated throughout the day.
+              <span className="tagline-cursor text-brand-500" />
+              <span className="mx-8 text-slate-300 dark:text-slate-700">✦</span>
+            </span>
+          ))}
+        </div>
+      </div>
+
       {open && (
         <nav className="lg:hidden border-t border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900">
           <div className="container-page py-2 flex flex-col">

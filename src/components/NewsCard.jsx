@@ -6,7 +6,8 @@ const FALLBACK_IMG = "https://images.unsplash.com/photo-1495020689067-958852a776
 
 const NewsCard = ({ post, variant = "default" }) => {
   if (!post) return null;
-  const img = post.coverImage ? assetUrl(post.coverImage) : FALLBACK_IMG;
+  const rawImg = post.thumbnailImage || post.coverImage;
+  const img = rawImg ? assetUrl(rawImg) : FALLBACK_IMG;
   const catColor = post.category?.color || "#4f46e5";
 
   if (variant === "compact") {

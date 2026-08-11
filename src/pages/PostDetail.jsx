@@ -107,7 +107,7 @@ const PostDetail = () => {
 
 
         <img
-          src={post.coverImage ? assetUrl(post.coverImage) : FALLBACK_IMG}
+          src={(post.coverImage || post.thumbnailImage) ? assetUrl(post.coverImage || post.thumbnailImage) : FALLBACK_IMG}
           alt={post.title}
           className="w-full h-[320px] md:h-[420px] object-cover rounded-xl mb-6"
         />

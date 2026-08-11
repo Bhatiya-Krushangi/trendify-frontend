@@ -10,6 +10,7 @@ const emptyForm = {
   excerpt: "",
   content: "",
   category: "",
+  thumbnailImage: "",
   coverImage: "",
   tags: "",
   status: "published",
@@ -24,7 +25,7 @@ const AddEditPost = () => {
   const isEdit = Boolean(id);
   const [form, setForm] = useState(emptyForm);
   const [categories, setCategories] = useState([]);
-  const [uploading, setUploading] = useState(false);
+  const [uploadingField, setUploadingField] = useState(null); // 'thumbnail' | 'cover' | null
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
 
@@ -34,6 +35,8 @@ const AddEditPost = () => {
       api.get(`/posts/id/${id}`).then(({ data }) => {
         setForm({
           ...data,
+          thumbnailImage: data.thumbnailImage || "",
+          coverImage: data.coverImage || "",
           category: data.category?._id || "",
           tags: (data.tags || []).join(", "),
         });
@@ -41,19 +44,19 @@ const AddEditPost = () => {
     }
   }, [id]);
 
-  const handleImage = async (e) => {
+  const handleImage = async (e, fieldName) => {
     const file = e.target.files[0];
     if (!file) return;
-    setUploading(true);
+    setUploadingField(fieldName);
     try {
       const fd = new FormData();
       fd.append("image", file);
       const { data } = await api.post("/upload", fd, { headers: { "Content-Type": "multipart/form-data" } });
-      setForm((f) => ({ ...f, coverImage: data.url }));
+      setForm((f) => ({ ...f, [fieldName]: data.url }));
     } catch (err) {
       setError(err.response?.data?.message || "Upload failed");
     } finally {
-      setUploading(false);
+      setUploadingField(null);
     }
   };
 
@@ -136,17 +139,58 @@ const AddEditPost = () => {
             </div>
           </div>
 
-          <div>
-            <label className="text-sm font-medium mb-1 block">Cover Image</label>
-            <div className="flex items-center gap-4">
-              <label className="flex flex-col items-center justify-center w-32 h-24 border-2 border-dashed border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50 shrink-0">
-                <UploadCloud size={20} className="text-slate-400" />
-                <span className="text-[11px] text-slate-400 mt-1">{uploading ? "Uploading…" : "Click to upload"}</span>
-                <input type="file" accept="image/*" onChange={handleImage} className="hidden" />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 p-4 bg-slate-50 border border-slate-200 rounded-xl">
+            {/* Thumbnail Image Uploader */}
+            <div>
+              <label className="text-sm font-semibold mb-1 block text-slate-800">
+                1. Thumbnail Image (સાઇડ / લિસ્ટ માટે)
               </label>
-              {form.coverImage && (
-                <img src={assetUrl(form.coverImage)} alt="Cover" className="w-32 h-24 object-cover rounded-lg" />
-              )}
+              <p className="text-xs text-slate-500 mb-3">
+                પોસ્ટ કાર્ડ, હોમપેજ ગ્રીડ અને સાઇડબાર લિસ્ટમાં આ ઈમેજ દેખાશે.
+                <br />
+                <span className="font-semibold text-brand-600">Recommended: 600 x 400 pixels</span>
+              </p>
+              <div className="flex items-center gap-4">
+                <label className="flex flex-col items-center justify-center w-32 h-24 border-2 border-dashed border-slate-300 bg-white rounded-lg cursor-pointer hover:bg-slate-100 shrink-0 transition-colors">
+                  <UploadCloud size={20} className="text-slate-400" />
+                  <span className="text-[11px] text-slate-500 mt-1">
+                    {uploadingField === "thumbnailImage" ? "Uploading…" : "Upload Thumbnail"}
+                  </span>
+                  <input type="file" accept="image/*" onChange={(e) => handleImage(e, "thumbnailImage")} className="hidden" />
+                </label>
+                {form.thumbnailImage ? (
+                  <img src={assetUrl(form.thumbnailImage)} alt="Thumbnail" className="w-32 h-24 object-cover rounded-lg border border-slate-200" />
+                ) : form.coverImage ? (
+                  <div className="text-center">
+                    <img src={assetUrl(form.coverImage)} alt="Fallback Cover" className="w-32 h-24 object-cover rounded-lg border border-slate-200 opacity-60" />
+                    <span className="text-[10px] text-slate-400 block mt-0.5">(Fallback from Cover)</span>
+                  </div>
+                ) : null}
+              </div>
+            </div>
+
+            {/* Cover Image Uploader */}
+            <div>
+              <label className="text-sm font-semibold mb-1 block text-slate-800">
+                2. Cover Image (બ્લોગ અંદર મેઈન પેજ માટે)
+              </label>
+              <p className="text-xs text-slate-500 mb-3">
+                બ્લોગ પોસ્ટ ઓપન કર્યા પછી અંદર મેઈન હેડર પર આ ઈમેજ દેખાશે.
+                <br />
+                <span className="font-semibold text-brand-600">Recommended: 1200 x 675 pixels</span>
+              </p>
+              <div className="flex items-center gap-4">
+                <label className="flex flex-col items-center justify-center w-32 h-24 border-2 border-dashed border-slate-300 bg-white rounded-lg cursor-pointer hover:bg-slate-100 shrink-0 transition-colors">
+                  <UploadCloud size={20} className="text-slate-400" />
+                  <span className="text-[11px] text-slate-500 mt-1">
+                    {uploadingField === "coverImage" ? "Uploading…" : "Upload Cover"}
+                  </span>
+                  <input type="file" accept="image/*" onChange={(e) => handleImage(e, "coverImage")} className="hidden" />
+                </label>
+                {form.coverImage && (
+                  <img src={assetUrl(form.coverImage)} alt="Cover" className="w-32 h-24 object-cover rounded-lg border border-slate-200" />
+                )}
+              </div>
             </div>
           </div>
 

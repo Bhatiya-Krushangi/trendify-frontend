@@ -67,6 +67,39 @@ h1, h2, h3, h4, .font-display {
   @apply bg-brand-200 text-brand-900;
 }
 
+/* ── Tagline ticker strip ── */
+@keyframes ticker-slide {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes blink-cursor {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+.tagline-ticker-track {
+  display: flex;
+  width: max-content;
+  animation: ticker-slide 22s linear infinite;
+  will-change: transform;
+}
+
+.tagline-ticker-track:hover {
+  animation-play-state: paused;
+}
+
+.tagline-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 0.85em;
+  background: currentColor;
+  margin-left: 2px;
+  vertical-align: middle;
+  border-radius: 1px;
+  animation: blink-cursor 0.85s step-start infinite;
+}
+
 /* Quill editor container */
 .ql-editor {
   min-height: 260px;

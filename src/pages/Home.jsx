@@ -46,23 +46,23 @@ const Home = () => {
               className="relative rounded-xl overflow-hidden group h-[420px] block shadow-sm hover:shadow-xl transition-shadow duration-300"
             >
               <img
-                src={featured.coverImage ? assetUrl(featured.coverImage) : FALLBACK_IMG}
+                src={(featured.coverImage || featured.thumbnailImage) ? assetUrl(featured.coverImage || featured.thumbnailImage) : FALLBACK_IMG}
                 alt={featured.title}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
-              <div className="absolute bottom-0 p-6 text-white">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/75 via-60% to-transparent" />
+              <div className="absolute bottom-0 p-6 text-white z-10">
                 <span
-                  className="inline-block text-[11px] font-bold uppercase tracking-wide px-2.5 py-1 rounded mb-3"
+                  className="inline-block text-[11px] font-bold uppercase tracking-wide px-2.5 py-1 rounded mb-3 shadow-sm"
                   style={{ backgroundColor: featured.category?.color || "#4f46e5" }}
                 >
                   <Translate>{featured.category?.name}</Translate>
                 </span>
-                <h1 className="text-2xl md:text-3xl font-display font-bold leading-tight mb-3">
+                <h1 className="text-2xl md:text-3xl font-display font-bold leading-tight mb-3 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
                   <Translate>{featured.title}</Translate>
                 </h1>
 
-                <p className="text-sm text-slate-200 line-clamp-2 max-w-xl">
+                <p className="text-sm text-slate-100 line-clamp-2 max-w-xl drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)] font-medium">
                   <Translate>{featured.excerpt}</Translate>
                 </p>
               </div>
@@ -77,7 +77,7 @@ const Home = () => {
                 className="flex gap-3 group card-surface p-2.5 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
               >
                 <img
-                  src={post.coverImage ? assetUrl(post.coverImage) : FALLBACK_IMG}
+                  src={(post.thumbnailImage || post.coverImage) ? assetUrl(post.thumbnailImage || post.coverImage) : FALLBACK_IMG}
                   alt={post.title}
                   className="w-24 h-20 object-cover rounded-lg shrink-0"
                 />
