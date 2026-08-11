@@ -143,11 +143,9 @@ const AddEditPost = () => {
             {/* Thumbnail Image Uploader */}
             <div>
               <label className="text-sm font-semibold mb-1 block text-slate-800">
-                1. Thumbnail Image (સાઇડ / લિસ્ટ માટે)
+                1. Thumbnail Image
               </label>
               <p className="text-xs text-slate-500 mb-3">
-                પોસ્ટ કાર્ડ, હોમપેજ ગ્રીડ અને સાઇડબાર લિસ્ટમાં આ ઈમેજ દેખાશે.
-                <br />
                 <span className="font-semibold text-brand-600">Recommended: 600 x 400 pixels</span>
               </p>
               <div className="flex items-center gap-4">
@@ -172,11 +170,9 @@ const AddEditPost = () => {
             {/* Cover Image Uploader */}
             <div>
               <label className="text-sm font-semibold mb-1 block text-slate-800">
-                2. Cover Image (બ્લોગ અંદર મેઈન પેજ માટે)
+                2. Cover Image
               </label>
               <p className="text-xs text-slate-500 mb-3">
-                બ્લોગ પોસ્ટ ઓપન કર્યા પછી અંદર મેઈન હેડર પર આ ઈમેજ દેખાશે.
-                <br />
                 <span className="font-semibold text-brand-600">Recommended: 1200 x 675 pixels</span>
               </p>
               <div className="flex items-center gap-4">
