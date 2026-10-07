@@ -206,7 +206,7 @@ const Navbar = () => {
               <span className="inline-block w-1.5 h-1.5 rounded-full bg-brand-500 animate-pulse shrink-0" />
               <span className="font-bold text-slate-700 dark:text-slate-200">NexTrendX</span>
               <span className="text-slate-400 dark:text-slate-500 mx-1">—</span>
-              Latest Indian news, trending stories and clear explainers — updated throughout the day.
+              {t("nav.tagline")}
               <span className="tagline-cursor text-brand-500" />
               <span className="mx-8 text-slate-300 dark:text-slate-700">✦</span>
             </span>
@@ -242,21 +242,22 @@ const Navbar = () => {
               </NavLink>
             ))}
             {/* Mobile language selector */}
-            {/* <div className="flex items-center gap-2 px-2 py-2.5 border-b border-slate-50 dark:border-slate-800">
+            <div className="flex items-center gap-2 px-2 py-2.5 border-b border-slate-50 dark:border-slate-800">
               <Globe size={15} className="text-slate-500" />
               {LANG_OPTIONS.map((opt) => (
                 <button
                   key={opt.code}
-                  onClick={() => setLang(opt.code)}
+                  onClick={() => { setLang(opt.code); setOpen(false); }}
                   className={`px-2.5 py-1 rounded-full text-xs font-medium transition-colors ${lang === opt.code
                       ? "bg-brand-600 text-white"
                       : "bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400"
                     }`}
                 >
+                  <span className="mr-1">{opt.flag}</span>
                   {opt.label}
                 </button>
               ))}
-            </div> */}
+            </div>
            
           </div>
         </nav>

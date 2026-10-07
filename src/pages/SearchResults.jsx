@@ -131,7 +131,7 @@ const SearchResults = () => {
             </h2>
             {!loading && pages > 1 && (
               <span className="text-sm text-slate-400 dark:text-slate-500">
-                Page {page} of {pages}
+                {t("search.page")} {page} {t("search.of")} {pages}
               </span>
             )}
           </div>
@@ -170,7 +170,7 @@ const SearchResults = () => {
                 disabled={page === 1}
                 className="flex items-center gap-1 px-3 py-2 rounded-md text-sm font-medium border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
               >
-                <ChevronLeft size={15} /> Prev
+                <ChevronLeft size={15} /> {t("search.prev")}
               </button>
 
               {/* Page numbers */}
@@ -199,7 +199,7 @@ const SearchResults = () => {
                 disabled={page === pages}
                 className="flex items-center gap-1 px-3 py-2 rounded-md text-sm font-medium border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
               >
-                Next <ChevronRight size={15} />
+                {t("search.next")} <ChevronRight size={15} />
               </button>
             </div>
           )}

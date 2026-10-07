@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { X, LogIn, UserPlus } from "lucide-react";
 import { useUserAuth } from "../context/UserAuthContext";
+import { useLanguage } from "../context/LanguageContext";
 
 const inputClass =
   "w-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 transition";
@@ -15,6 +16,7 @@ const inputClass =
  */
 const LoginDialog = ({ open, onClose, onSuccess, title }) => {
   const { login, register } = useUserAuth();
+  const { t } = useLanguage();
   const [mode, setMode] = useState("login");
   const [form, setForm] = useState({ name: "", email: "", password: "" });
   const [error, setError] = useState("");
@@ -53,7 +55,7 @@ const LoginDialog = ({ open, onClose, onSuccess, title }) => {
       onSuccess?.(result);
       onClose();
     } catch (err) {
-      setError(err.response?.data?.message || "Something went wrong. Try again.");
+      setError(err.response?.data?.message || t("contact.error"));
     } finally {
       setLoading(false);
     }
@@ -97,7 +99,7 @@ const LoginDialog = ({ open, onClose, onSuccess, title }) => {
                 : "text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200"
             }`}
           >
-            <LogIn size={14} /> Sign In
+            <LogIn size={14} /> {t("login.signIn")}
           </button>
           <button
             onClick={() => { setMode("register"); setError(""); }}
@@ -107,7 +109,7 @@ const LoginDialog = ({ open, onClose, onSuccess, title }) => {
                 : "text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200"
             }`}
           >
-            <UserPlus size={14} /> Sign Up
+            <UserPlus size={14} /> {t("login.signUp")}
           </button>
         </div>
 
@@ -115,7 +117,7 @@ const LoginDialog = ({ open, onClose, onSuccess, title }) => {
           {mode === "register" && (
             <input
               required
-              placeholder="Your name"
+              placeholder={t("login.yourName")}
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
               className={inputClass}
@@ -124,7 +126,7 @@ const LoginDialog = ({ open, onClose, onSuccess, title }) => {
           <input
             required
             type="email"
-            placeholder="Email address"
+            placeholder={t("login.email")}
             value={form.email}
             onChange={(e) => setForm({ ...form, email: e.target.value })}
             className={inputClass}
@@ -133,7 +135,7 @@ const LoginDialog = ({ open, onClose, onSuccess, title }) => {
             required
             type="password"
             minLength={6}
-            placeholder="Password (min. 6 characters)"
+            placeholder={t("login.password")}
             value={form.password}
             onChange={(e) => setForm({ ...form, password: e.target.value })}
             className={inputClass}
@@ -151,10 +153,10 @@ const LoginDialog = ({ open, onClose, onSuccess, title }) => {
             className="w-full bg-brand-600 hover:bg-brand-500 text-white font-semibold py-2.5 rounded-md text-sm disabled:opacity-60 transition mt-1"
           >
             {loading
-              ? "Please wait…"
+              ? t("login.pleaseWait")
               : mode === "login"
-              ? "Sign In"
-              : "Create Account"}
+              ? t("login.signIn")
+              : t("login.createAccount")}
           </button>
         </form>
       </div>
