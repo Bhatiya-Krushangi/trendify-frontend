@@ -43,15 +43,13 @@ const AdSlot = ({ type = "leaderboard", clientId, slotId, enabled = false, class
     );
   }
 
-  // Placeholder — reserves the exact ad size so real ads slot in without layout shift
+  // Reserves space as it is, but hides advertisement display (invisible/transparent, no text or border)
   return (
     <div
-      className={`mx-auto flex items-center justify-center rounded-lg border border-dashed border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-800/60 text-slate-400 dark:text-slate-500 text-xs font-medium ${className}`}
+      className={`mx-auto invisible pointer-events-none select-none ${className}`}
       style={{ maxWidth: w, height: h }}
       aria-hidden="true"
-    >
-      Advertisement · {label}
-    </div>
+    />
   );
 };
 

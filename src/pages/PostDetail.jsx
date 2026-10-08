@@ -95,12 +95,22 @@ const PostDetail = () => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-8 items-start">
       <article>
-        <span
-          className="inline-block text-[11px] font-bold uppercase tracking-wide px-2.5 py-1 rounded mb-3"
-          style={{ backgroundColor: post.category?.color || "#4f46e5", color: "#fff" }}
-        >
-          <Translate>{post.category?.name}</Translate>
-        </span>
+        {post.category?.slug ? (
+          <Link
+            to={`/${post.category.slug}`}
+            className="inline-block text-[11px] font-bold uppercase tracking-wide px-2.5 py-1 rounded mb-3 hover:opacity-90 transition-opacity"
+            style={{ backgroundColor: post.category?.color || "#4f46e5", color: "#fff" }}
+          >
+            <Translate>{post.category?.name}</Translate>
+          </Link>
+        ) : (
+          <span
+            className="inline-block text-[11px] font-bold uppercase tracking-wide px-2.5 py-1 rounded mb-3"
+            style={{ backgroundColor: post.category?.color || "#4f46e5", color: "#fff" }}
+          >
+            <Translate>{post.category?.name}</Translate>
+          </span>
+        )}
         <h1 className="text-2xl md:text-4xl font-display font-bold leading-tight mb-4 text-slate-900 dark:text-white">
           <Translate>{post.title}</Translate>
         </h1>

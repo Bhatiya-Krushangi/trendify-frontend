@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useParams } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import { UserAuthProvider } from "./context/UserAuthContext";
 import { ThemeProvider } from "./context/ThemeContext";
@@ -17,6 +17,7 @@ import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import Sitemap from "./pages/Sitemap";
 import NotFound from "./pages/NotFound";
+import SlugResolver from "./pages/SlugResolver";
 
 import Login from "./pages/admin/Login";
 import Dashboard from "./pages/admin/Dashboard";
@@ -27,6 +28,16 @@ import Comments from "./pages/admin/Comments";
 import Messages from "./pages/admin/Messages";
 import AdminUsers from "./pages/admin/Users";
 import Settings from "./pages/admin/Settings";
+
+function CategoryRedirect() {
+  const { slug } = useParams();
+  return <Navigate to={`/${slug}`} replace />;
+}
+
+function PostRedirect() {
+  const { slug } = useParams();
+  return <Navigate to={`/${slug}`} replace />;
+}
 
 function App() {
   return (
@@ -39,14 +50,15 @@ function App() {
           {/* Public site */}
           <Route element={<PublicLayout />}>
             <Route path="/" element={<Home />} />
-            <Route path="/category/:slug" element={<CategoryPage />} />
-            <Route path="/post/:slug" element={<PostDetail />} />
             <Route path="/search" element={<SearchResults />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/privacy-policy" element={<Privacy />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/sitemap" element={<Sitemap />} />
+            <Route path="/category/:slug" element={<CategoryRedirect />} />
+            <Route path="/post/:slug" element={<PostRedirect />} />
+            <Route path="/:slug" element={<SlugResolver />} />
             <Route path="*" element={<NotFound />} />
           </Route>
 

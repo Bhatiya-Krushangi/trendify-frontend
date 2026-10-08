@@ -42,7 +42,7 @@ const Home = () => {
         <div className="grid grid-cols-1 md:grid-cols-[1.5fr_1fr] gap-5">
           {featured && (
             <Link
-              to={`/post/${featured.slug}`}
+              to={`/${featured.urltitle || featured.slug}`}
               className="relative rounded-xl overflow-hidden group h-[420px] block shadow-sm hover:shadow-xl transition-shadow duration-300"
             >
               <img
@@ -73,7 +73,7 @@ const Home = () => {
             {sideStories.map((post) => (
               <Link
                 key={post._id}
-                to={`/post/${post.slug}`}
+                to={`/${post.urltitle || post.slug}`}
                 className="flex gap-3 group card-surface p-2.5 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
               >
                 <img
@@ -136,7 +136,7 @@ const Home = () => {
             return (
               <Link
                 key={cat._id}
-                to={`/category/${cat.slug}`}
+                to={`/${cat.slug}`}
                 className="relative h-28 rounded-xl overflow-hidden flex flex-col items-center justify-center text-white group shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
                 style={{ backgroundColor: cat.color }}
               >

@@ -40,7 +40,7 @@ const Sitemap = () => {
         <h2 className="text-lg font-bold mb-3 text-slate-900 dark:text-white">{t("sitemap.categories")}</h2>
         <ul className="grid grid-cols-2 gap-2 text-sm">
           {categories.map((c) => (
-            <li key={c._id}><Link to={`/category/${c.slug}`} className="text-brand-600 dark:text-brand-400 hover:underline"><Translate>{c.name}</Translate></Link></li>
+            <li key={c._id}><Link to={`/${c.slug}`} className="text-brand-600 dark:text-brand-400 hover:underline"><Translate>{c.name}</Translate></Link></li>
           ))}
         </ul>
       </section>
@@ -49,7 +49,7 @@ const Sitemap = () => {
         <h2 className="text-lg font-bold mb-3 text-slate-900 dark:text-white">{t("sitemap.recentArticles")}</h2>
         <ul className="flex flex-col gap-2 text-sm">
           {posts.map((p) => (
-            <li key={p._id}><Link to={`/post/${p.slug}`} className="text-brand-600 dark:text-brand-400 hover:underline"><Translate>{p.title}</Translate></Link></li>
+            <li key={p._id}><Link to={`/${p.urltitle || p.slug}`} className="text-brand-600 dark:text-brand-400 hover:underline"><Translate>{p.title}</Translate></Link></li>
           ))}
         </ul>
       </section>

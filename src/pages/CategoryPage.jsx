@@ -5,6 +5,7 @@ import NewsCard from "../components/NewsCard";
 import Sidebar from "../components/Sidebar";
 import { useLanguage } from "../context/LanguageContext";
 import Translate from "../components/Translate";
+import NotFound from "./NotFound";
 
 const CategoryPage = () => {
   const { slug } = useParams();
@@ -13,20 +14,45 @@ const CategoryPage = () => {
   const [page, setPage] = useState(1);
   const [pages, setPages] = useState(1);
   const [loading, setLoading] = useState(true);
+  const [notFound, setNotFound] = useState(false);
   const { t } = useLanguage();
+
+  useEffect(() => {
+    setPage(1);
+  }, [slug]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
     setLoading(true);
-    api.get(`/categories/${slug}`).then(({ data }) => setCategory(data)).catch(() => setCategory(null));
-    api
-      .get("/posts", { params: { category: slug, page, limit: 9 } })
-      .then(({ data }) => {
-        setPosts(data.posts);
-        setPages(data.pages);
-      })
-      .finally(() => setLoading(false));
+    setNotFound(false);
+
+    Promise.allSettled([
+      api.get(`/categories/${slug}`),
+      api.get("/posts", { params: { category: slug, page, limit: 9 } }),
+    ]).then(([catRes, postsRes]) => {
+      if (catRes.status === "fulfilled") {
+        setCategory(catRes.value.data);
+      } else {
+        setCategory(null);
+        if (catRes.reason?.response?.status === 404) {
+          setNotFound(true);
+        }
+      }
+
+      if (postsRes.status === "fulfilled") {
+        setPosts(postsRes.value.data?.posts || []);
+        setPages(postsRes.value.data?.pages || 1);
+      } else {
+        setPosts([]);
+      }
+    }).finally(() => {
+      setLoading(false);
+    });
   }, [slug, page]);
+
+  if (!loading && notFound) {
+    return <NotFound />;
+  }
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-8 items-start">

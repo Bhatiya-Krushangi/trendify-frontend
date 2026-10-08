@@ -7,6 +7,7 @@ import api, { assetUrl } from "../../api/axios";
 
 const emptyForm = {
   title: "",
+  urltitle: "",
   excerpt: "",
   content: "",
   category: "",
@@ -19,11 +20,21 @@ const emptyForm = {
   metaDescription: "",
 };
 
+const slugifyText = (text) => {
+  return (text || "")
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, "")
+    .replace(/[\s_-]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+};
+
 const AddEditPost = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const isEdit = Boolean(id);
   const [form, setForm] = useState(emptyForm);
+  const [urlTitleTouched, setUrlTitleTouched] = useState(false);
   const [categories, setCategories] = useState([]);
   const [uploadingField, setUploadingField] = useState(null); // 'thumbnail' | 'cover' | null
   const [saving, setSaving] = useState(false);
@@ -35,14 +46,30 @@ const AddEditPost = () => {
       api.get(`/posts/id/${id}`).then(({ data }) => {
         setForm({
           ...data,
+          urltitle: data.urltitle || data.slug || "",
           thumbnailImage: data.thumbnailImage || "",
           coverImage: data.coverImage || "",
           category: data.category?._id || "",
           tags: (data.tags || []).join(", "),
         });
+        setUrlTitleTouched(true);
       });
     }
   }, [id]);
+
+  const handleTitleChange = (e) => {
+    const val = e.target.value;
+    setForm((f) => ({
+      ...f,
+      title: val,
+      urltitle: urlTitleTouched ? f.urltitle : slugifyText(val),
+    }));
+  };
+
+  const handleUrlTitleChange = (e) => {
+    setUrlTitleTouched(true);
+    setForm((f) => ({ ...f, urltitle: e.target.value }));
+  };
 
   const handleImage = async (e, fieldName) => {
     const file = e.target.files[0];
@@ -64,10 +91,12 @@ const AddEditPost = () => {
     e.preventDefault();
     setError("");
     setSaving(true);
-    // Strip read-only fields so edit-saves never reset views/slug in the DB
-    const { views: _views, _id: _id_, slug: _slug, ...rest } = form;
+    const { views: _views, _id: _id_, ...rest } = form;
+    const cleanUrl = slugifyText(form.urltitle || form.title);
     const payload = {
       ...rest,
+      urltitle: cleanUrl,
+      slug: cleanUrl,
       tags: form.tags.split(",").map((t) => t.trim()).filter(Boolean),
     };
     try {
@@ -91,15 +120,31 @@ const AddEditPost = () => {
 
       <form onSubmit={submit} className="flex flex-col gap-5">
         <div className="bg-white rounded-xl border border-slate-200 p-5 flex flex-col gap-4">
-          <div>
-            <label className="text-sm font-medium mb-1 block">Title</label>
-            <input
-              required
-              value={form.title}
-              onChange={(e) => setForm({ ...form, title: e.target.value })}
-              placeholder="Enter post title"
-              className="w-full border border-slate-200 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
-            />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="text-sm font-medium mb-1 block">Title *</label>
+              <input
+                required
+                value={form.title}
+                onChange={handleTitleChange}
+                placeholder="Enter post title"
+                className="w-full border border-slate-200 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
+              />
+            </div>
+            <div>
+              <label className="text-sm font-medium mb-1 block">
+                URL Title <span className="text-xs text-slate-400 font-normal">(urltitle)</span>
+              </label>
+              <input
+                value={form.urltitle}
+                onChange={handleUrlTitleChange}
+                placeholder="e.g. ai or custom-blog-title"
+                className="w-full border border-slate-200 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 font-mono"
+              />
+              <p className="text-xs text-slate-500 mt-1">
+                Live URL: <span className="font-mono text-brand-600 font-semibold">/{slugifyText(form.urltitle || form.title) || "urltitle"}</span>
+              </p>
+            </div>
           </div>
 
           <div>

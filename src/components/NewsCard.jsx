@@ -12,7 +12,7 @@ const NewsCard = ({ post, variant = "default" }) => {
 
   if (variant === "compact") {
     return (
-      <Link to={`/post/${post.slug}`} className="flex gap-3 group">
+      <Link to={`/${post.urltitle || post.slug}`} className="flex gap-3 group">
         <img src={img} alt={post.title} className="w-20 h-16 object-cover rounded-md shrink-0" />
         <div>
           <p className="text-sm font-semibold text-slate-900 dark:text-slate-100 leading-snug line-clamp-2 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
@@ -25,21 +25,31 @@ const NewsCard = ({ post, variant = "default" }) => {
 
   return (
     <article className="group card-surface overflow-hidden hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 p-3">
-      <Link to={`/post/${post.slug}`} className="block overflow-hidden rounded-lg mb-3">
+      <Link to={`/${post.urltitle || post.slug}`} className="block overflow-hidden rounded-lg mb-3">
         <img
           src={img}
           alt={post.title}
           className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300"
         />
       </Link>
-      <span
-        className="inline-block text-[11px] font-bold uppercase tracking-wide mb-1.5"
-        style={{ color: catColor }}
-      >
-        <Translate>{post.category?.name}</Translate>
-      </span>
+      {post.category?.slug ? (
+        <Link
+          to={`/${post.category.slug}`}
+          className="inline-block text-[11px] font-bold uppercase tracking-wide mb-1.5 hover:underline"
+          style={{ color: catColor }}
+        >
+          <Translate>{post.category?.name}</Translate>
+        </Link>
+      ) : (
+        <span
+          className="inline-block text-[11px] font-bold uppercase tracking-wide mb-1.5"
+          style={{ color: catColor }}
+        >
+          <Translate>{post.category?.name}</Translate>
+        </span>
+      )}
       <h3 className="font-semibold text-slate-900 dark:text-slate-100 leading-snug mb-1.5 line-clamp-2">
-        <Link to={`/post/${post.slug}`} className="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
+        <Link to={`/${post.urltitle || post.slug}`} className="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
           <Translate>{post.title}</Translate>
         </Link>
       </h3>

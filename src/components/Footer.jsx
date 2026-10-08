@@ -55,11 +55,11 @@ const Footer = () => {
         <div>
           <h4 className="text-white font-semibold text-sm uppercase tracking-wide mb-4">{t("footer.categories")}</h4>
           <ul className="space-y-2.5 text-sm">
-            <li><Link to="/category/world" className="hover:text-white transition-colors"><Translate>World</Translate></Link></li>
-            <li><Link to="/category/business" className="hover:text-white transition-colors"><Translate>Business</Translate></Link></li>
-            <li><Link to="/category/sports" className="hover:text-white transition-colors"><Translate>Sports</Translate></Link></li>
-            <li><Link to="/category/entertainment" className="hover:text-white transition-colors"><Translate>Entertainment</Translate></Link></li>
-            <li><Link to="/category/lifestyle" className="hover:text-white transition-colors"><Translate>Lifestyle</Translate></Link></li>
+            <li><Link to="/world" className="hover:text-white transition-colors"><Translate>World</Translate></Link></li>
+            <li><Link to="/business" className="hover:text-white transition-colors"><Translate>Business</Translate></Link></li>
+            <li><Link to="/sports" className="hover:text-white transition-colors"><Translate>Sports</Translate></Link></li>
+            <li><Link to="/entertainment" className="hover:text-white transition-colors"><Translate>Entertainment</Translate></Link></li>
+            <li><Link to="/lifestyle" className="hover:text-white transition-colors"><Translate>Lifestyle</Translate></Link></li>
           </ul>
         </div>
       </div>

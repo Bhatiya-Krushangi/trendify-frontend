@@ -138,6 +138,7 @@ const Posts = () => {
               <th className="p-4 font-medium w-8"></th>
               <th className="p-4 font-medium w-20">Thumbnail</th>
               <th className="p-4 font-medium">Title</th>
+              <th className="p-4 font-medium">URL Title</th>
               <th className="p-4 font-medium">Category</th>
               <th className="p-4 font-medium">Date</th>
               <th className="p-4 font-medium">Views</th>
@@ -148,14 +149,14 @@ const Posts = () => {
           <tbody>
             {loading && (
               <tr>
-                <td colSpan={8} className="p-6 text-center text-slate-400">
+                <td colSpan={9} className="p-6 text-center text-slate-400">
                   Loading…
                 </td>
               </tr>
             )}
             {!loading && filtered.length === 0 && (
               <tr>
-                <td colSpan={8} className="p-6 text-center text-slate-400">
+                <td colSpan={9} className="p-6 text-center text-slate-400">
                   No posts found.
                 </td>
               </tr>
@@ -190,7 +191,12 @@ const Posts = () => {
                     </div>
                   )}
                 </td>
-                <td className="p-4 max-w-[220px] truncate font-medium">{p.title}</td>
+                <td className="p-4 max-w-[200px] truncate font-medium">{p.title}</td>
+                <td className="p-4 max-w-[160px] truncate">
+                  <span className="font-mono text-xs text-brand-600 bg-brand-50 px-2 py-0.5 rounded">
+                    /{p.urltitle || p.slug}
+                  </span>
+                </td>
                 <td className="p-4 text-slate-500">{p.category?.name}</td>
                 <td className="p-4 text-slate-500">{formatDate(p.createdAt)}</td>
                 <td className="p-4 text-slate-500">{p.views}</td>
