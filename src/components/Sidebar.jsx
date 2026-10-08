@@ -27,9 +27,9 @@ const Sidebar = ({ variant = "full" }) => {
       />
 
       <div className="card-surface p-4">
-        <h3 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-brand-600 dark:text-brand-400 mb-4">
+        <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-brand-600 dark:text-brand-400 mb-4">
           <TrendingUp size={16} /> {t("sidebar.trendingNow")}
-        </h3>
+        </h2>
         <div className="flex flex-col gap-4">
           {trending.length === 0 && (
             <p className="text-sm text-slate-400 dark:text-slate-500">{t("sidebar.nothingTrending")}</p>

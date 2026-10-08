@@ -1,40 +1,107 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NexTrendX — Breaking News, Trends & Stories</title>
-    <meta name="description" content="NexTrendX is your trusted source for breaking news, in-depth analysis, and trending stories from around the world." />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <!-- Google AdSense: replace ca-pub-XXXXXXXXXXXXXXXX with your publisher ID (also set it in Admin > Settings) -->
-    <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NexTrendX — Breaking News, Latest Trends & Articles</title>
+  <meta name="description"
+    content="NexTrendX is your trusted source for breaking news, latest trends, in-depth articles, and global stories. Stay informed with real-time updates." />
+  <link rel="canonical" href="https://nextrendx.in/" />
+
+  <!-- Schema.org JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["Organization", "NewsMediaOrganization"],
+        "@id": "https://nextrendx.in/#organization",
+        "name": "NexTrendX",
+        "legalName": "NexTrendX Media",
+        "url": "https://nextrendx.in/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://nextrendx.in/favicon.svg"
+        },
+        "description": "NexTrendX is your trusted source for breaking news, latest trends, in-depth articles, and global stories."
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://nextrendx.in/#website",
+        "url": "https://nextrendx.in/",
+        "name": "NexTrendX",
+        "description": "Breaking News, Latest Trends & Articles",
+        "publisher": {
+          "@id": "https://nextrendx.in/#organization"
+        },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://nextrendx.in/search?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    rel="preload"
+    as="style"
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+    media="print"
+    onload="this.media='all'" />
+  <noscript>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" />
+  </noscript>
+  <!-- Google AdSense: replace ca-pub-XXXXXXXXXXXXXXXX with your publisher ID (also set it in Admin > Settings) -->
+  <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
 
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QHE3MZ6KNY"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QHE3MZ6KNY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-      gtag('config', 'G-QHE3MZ6KNY');
-    </script>
+    gtag('config', 'G-QHE3MZ6KNY');
+  </script>
 
 
-    <script>
-      // Apply saved/system theme before paint to avoid a flash of the wrong theme
-      (function () {
-        var stored = localStorage.getItem("tp_theme");
-        var isDark = stored ? stored === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
-        if (isDark) document.documentElement.classList.add("dark");
-      })();
-    </script>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+  <script>
+    // Apply saved/system theme before paint to avoid a flash of the wrong theme
+    (function () {
+      var stored = localStorage.getItem("tp_theme");
+      var isDark = stored ? stored === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+      if (isDark) document.documentElement.classList.add("dark");
+    })();
+  </script>
+</head>
+
+<body>
+  <div id="root">
+    <!-- Static Crawlable Content for LLMs & Search Bots before JS Hydration -->
+    <header style="padding: 20px; font-family: sans-serif;">
+      <h1>NexTrendX — Breaking News, Latest Trends & Articles</h1>
+      <p>NexTrendX is your trusted source for breaking news, latest trends, in-depth articles, and global stories from
+        India and worldwide.</p>
+    </header>
+    <main style="padding: 20px; font-family: sans-serif;">
+      <section>
+        <h2>Latest News, Trending Stories & In-Depth Articles</h2>
+        <p>Explore real-time news and analysis across World Events, Business, Technology, Entertainment, and Sports.</p>
+      </section>
+    </main>
+  </div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+
 </html>

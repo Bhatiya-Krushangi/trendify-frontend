@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Globe, Briefcase, Trophy, Clapperboard, Heart, HeartPulse, Plane, ArrowRight } from "lucide-react";
+import { Globe, Briefcase, Trophy, Clapperboard, Heart, HeartPulse, Plane, ArrowRight, Sparkles, Newspaper, ShieldCheck, TrendingUp } from "lucide-react";
 import api from "../api/axios";
 import NewsCard from "../components/NewsCard";
 import Sidebar from "../components/Sidebar";
@@ -158,6 +158,52 @@ const Home = () => {
               </Link>
             );
           })}
+        </div>
+      </section>
+
+      {/* SEO Editorial & About Section */}
+      <section className="card-surface p-6 sm:p-8 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 mt-2">
+        <div className="max-w-4xl">
+          <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400 mb-2">
+            <Sparkles size={14} /> NexTrendX Editorial Hub
+          </span>
+          <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-4">
+            Breaking News, Trending Stories & In-Depth Articles
+          </h2>
+          <div className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed space-y-4">
+            <p>
+              Welcome to <strong>NexTrendX</strong>, your premier online destination for timely, accurate, and insightful news coverage from India and around the world. In an era where information moves at lightning speed, our dedicated editorial team works tirelessly to curate verified breaking news, viral social trends, comprehensive analysis, and compelling stories that truly matter.
+            </p>
+            <p>
+              Whether you are tracking real-time developments in <strong>business and finance</strong>, updates on payment systems, innovations in artificial intelligence and technology, major international events, or the latest buzz in sports and entertainment, NexTrendX keeps you ahead of the curve. Our platform is built to deliver rich, engaging articles designed for readers who value quality journalism, factual reporting, and unbiased perspectives.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t border-slate-100 dark:border-slate-800/60 mt-4">
+              <div className="flex flex-col gap-1">
+                <span className="font-semibold text-slate-900 dark:text-white flex items-center gap-1.5 text-sm">
+                  <Newspaper size={16} className="text-brand-600 dark:text-brand-400" /> Real-Time Updates
+                </span>
+                <span className="text-xs text-slate-500 dark:text-slate-400">
+                  Stay updated with breaking news stories, live updates, and urgent alerts 24/7.
+                </span>
+              </div>
+              <div className="flex flex-col gap-1">
+                <span className="font-semibold text-slate-900 dark:text-white flex items-center gap-1.5 text-sm">
+                  <TrendingUp size={16} className="text-brand-600 dark:text-brand-400" /> Curated Trending Topics
+                </span>
+                <span className="text-xs text-slate-500 dark:text-slate-400">
+                  Explore what the world is buzzing about across tech, culture, and lifestyle.
+                </span>
+              </div>
+              <div className="flex flex-col gap-1">
+                <span className="font-semibold text-slate-900 dark:text-white flex items-center gap-1.5 text-sm">
+                  <ShieldCheck size={16} className="text-brand-600 dark:text-brand-400" /> Fact-Checked Journalism
+                </span>
+                <span className="text-xs text-slate-500 dark:text-slate-400">
+                  Reliable reporting adhering to high standards of editorial integrity and clarity.
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </div>
