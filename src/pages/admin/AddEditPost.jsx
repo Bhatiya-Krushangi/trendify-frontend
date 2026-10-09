@@ -184,17 +184,23 @@ const AddEditPost = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 p-4 bg-slate-50 border border-slate-200 rounded-xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 p-4 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl">
             {/* Thumbnail Image Uploader */}
-            <div>
-              <label className="text-sm font-semibold mb-1 block text-slate-800">
-                1. Thumbnail Image
-              </label>
+            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border border-slate-200 dark:border-slate-700">
+              <div className="flex items-center justify-between mb-1">
+                <label className="text-sm font-semibold text-slate-800 dark:text-slate-100">
+                  1. Thumbnail Image (નાની / પ્રીવ્યૂ ઈમેજ)
+                </label>
+                <span className="text-[10px] bg-blue-50 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300 px-2 py-0.5 rounded font-medium">Cards & Lists</span>
+              </div>
+              <p className="text-xs text-slate-500 dark:text-slate-400 mb-2">
+                📌 <strong>ક્યાં દેખાશે:</strong> Home page cards, Category lists, Sidebar અને Search results માં.
+              </p>
               <p className="text-xs text-slate-500 mb-3">
-                <span className="font-semibold text-brand-600">Recommended: 600 x 400 pixels</span>
+                <span className="font-semibold text-brand-600">સૂચવેલ સાઇઝ: 600 x 400 pixels (3:2)</span>
               </p>
               <div className="flex items-center gap-4">
-                <label className="flex flex-col items-center justify-center w-32 h-24 border-2 border-dashed border-slate-300 bg-white rounded-lg cursor-pointer hover:bg-slate-100 shrink-0 transition-colors">
+                <label className="flex flex-col items-center justify-center w-32 h-24 border-2 border-dashed border-slate-300 bg-white dark:bg-slate-900 rounded-lg cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-800 shrink-0 transition-colors">
                   <UploadCloud size={20} className="text-slate-400" />
                   <span className="text-[11px] text-slate-500 mt-1">
                     {uploadingField === "thumbnailImage" ? "Uploading…" : "Upload Thumbnail"}
@@ -202,10 +208,10 @@ const AddEditPost = () => {
                   <input type="file" accept="image/*" onChange={(e) => handleImage(e, "thumbnailImage")} className="hidden" />
                 </label>
                 {form.thumbnailImage ? (
-                  <img src={assetUrl(form.thumbnailImage)} alt="Thumbnail" className="w-32 h-24 object-cover rounded-lg border border-slate-200" />
+                  <img src={assetUrl(form.thumbnailImage)} alt="Thumbnail" className="w-32 h-24 object-contain bg-slate-50 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-700" />
                 ) : form.coverImage ? (
                   <div className="text-center">
-                    <img src={assetUrl(form.coverImage)} alt="Fallback Cover" className="w-32 h-24 object-cover rounded-lg border border-slate-200 opacity-60" />
+                    <img src={assetUrl(form.coverImage)} alt="Fallback Cover" className="w-32 h-24 object-contain bg-slate-50 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-700 opacity-60" />
                     <span className="text-[10px] text-slate-400 block mt-0.5">(Fallback from Cover)</span>
                   </div>
                 ) : null}
@@ -213,15 +219,21 @@ const AddEditPost = () => {
             </div>
 
             {/* Cover Image Uploader */}
-            <div>
-              <label className="text-sm font-semibold mb-1 block text-slate-800">
-                2. Cover Image
-              </label>
+            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border border-slate-200 dark:border-slate-700">
+              <div className="flex items-center justify-between mb-1">
+                <label className="text-sm font-semibold text-slate-800 dark:text-slate-100">
+                  2. Cover Image (મોટી બેનર ઈમેજ)
+                </label>
+                <span className="text-[10px] bg-purple-50 text-purple-700 dark:bg-purple-900/40 dark:text-purple-300 px-2 py-0.5 rounded font-medium">Article Page Banner</span>
+              </div>
+              <p className="text-xs text-slate-500 dark:text-slate-400 mb-2">
+                📌 <strong>ક્યાં દેખાશે:</strong> આખો લેખ ખોલતી વખતે (Post Detail Page) ઉપર મોટા બેનરમાં.
+              </p>
               <p className="text-xs text-slate-500 mb-3">
-                <span className="font-semibold text-brand-600">Recommended: 1200 x 675 pixels</span>
+                <span className="font-semibold text-brand-600">સૂચવેલ સાઇઝ: 1200 x 675 pixels (16:9)</span>
               </p>
               <div className="flex items-center gap-4">
-                <label className="flex flex-col items-center justify-center w-32 h-24 border-2 border-dashed border-slate-300 bg-white rounded-lg cursor-pointer hover:bg-slate-100 shrink-0 transition-colors">
+                <label className="flex flex-col items-center justify-center w-32 h-24 border-2 border-dashed border-slate-300 bg-white dark:bg-slate-900 rounded-lg cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-800 shrink-0 transition-colors">
                   <UploadCloud size={20} className="text-slate-400" />
                   <span className="text-[11px] text-slate-500 mt-1">
                     {uploadingField === "coverImage" ? "Uploading…" : "Upload Cover"}
@@ -229,7 +241,7 @@ const AddEditPost = () => {
                   <input type="file" accept="image/*" onChange={(e) => handleImage(e, "coverImage")} className="hidden" />
                 </label>
                 {form.coverImage && (
-                  <img src={assetUrl(form.coverImage)} alt="Cover" className="w-32 h-24 object-cover rounded-lg border border-slate-200" />
+                  <img src={assetUrl(form.coverImage)} alt="Cover" className="w-32 h-24 object-contain bg-slate-50 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-700" />
                 )}
               </div>
             </div>

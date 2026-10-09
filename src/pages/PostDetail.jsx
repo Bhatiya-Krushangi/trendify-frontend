@@ -116,11 +116,14 @@ const PostDetail = () => {
         </h1>
 
 
-        <img
-          src={(post.coverImage || post.thumbnailImage) ? assetUrl(post.coverImage || post.thumbnailImage) : FALLBACK_IMG}
-          alt={post.title}
-          className="w-full h-[320px] md:h-[420px] object-cover rounded-xl mb-6"
-        />
+        {/* Post Banner Image (object-contain so it doesn't get cut off) */}
+        <div className="w-full max-h-[500px] bg-slate-100 dark:bg-slate-800/60 rounded-xl overflow-hidden mb-6 flex items-center justify-center border border-slate-200/60 dark:border-slate-800">
+          <img
+            src={(post.coverImage || post.thumbnailImage) ? assetUrl(post.coverImage || post.thumbnailImage) : FALLBACK_IMG}
+            alt={post.title}
+            className="w-full max-h-[500px] object-contain rounded-xl"
+          />
+        </div>
 
         <div className="prose-content" dangerouslySetInnerHTML={{ __html: translatedContent }} />
 
