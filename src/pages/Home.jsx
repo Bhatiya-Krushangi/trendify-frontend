@@ -79,7 +79,7 @@ const Home = () => {
                 <img
                   src={(post.thumbnailImage || post.coverImage) ? assetUrl(post.thumbnailImage || post.coverImage) : FALLBACK_IMG}
                   alt={post.title}
-                  className="w-24 h-20 object-contain bg-slate-100 dark:bg-slate-800 rounded-lg shrink-0"
+                  className="w-24 h-20 object-cover rounded-lg shrink-0"
                 />
                 <div>
                   <span className="text-[10px] font-bold uppercase tracking-wide" style={{ color: post.category?.color }}>

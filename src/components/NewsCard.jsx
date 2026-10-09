@@ -25,11 +25,11 @@ const NewsCard = ({ post, variant = "default" }) => {
 
   return (
     <article className="group card-surface overflow-hidden hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 p-3">
-      <Link to={`/${post.urltitle || post.slug}`} className="block overflow-hidden rounded-lg mb-3 bg-slate-100 dark:bg-slate-800 aspect-[16/10] flex items-center justify-center">
+      <Link to={`/${post.urltitle || post.slug}`} className="block overflow-hidden rounded-lg mb-3 bg-slate-100 dark:bg-slate-800 aspect-[16/10]">
         <img
           src={img}
           alt={post.title}
-          className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
         />
       </Link>
       {post.category?.slug ? (
