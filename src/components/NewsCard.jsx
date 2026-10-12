@@ -13,7 +13,7 @@ const NewsCard = ({ post, variant = "default" }) => {
   if (variant === "compact") {
     return (
       <Link to={`/${post.urltitle || post.slug}`} className="flex gap-3 group">
-        <img src={img} alt={post.title} className="w-20 h-16 object-cover rounded-md shrink-0" />
+        <img src={img} alt={post.title} className="w-24 aspect-[3/2] object-cover rounded-md shrink-0" />
         <div>
           <p className="text-sm font-semibold text-slate-900 dark:text-slate-100 leading-snug line-clamp-2 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
             <Translate>{post.title}</Translate>
@@ -25,7 +25,7 @@ const NewsCard = ({ post, variant = "default" }) => {
 
   return (
     <article className="group card-surface overflow-hidden hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 p-3">
-      <Link to={`/${post.urltitle || post.slug}`} className="block overflow-hidden rounded-lg mb-3 bg-slate-100 dark:bg-slate-800 aspect-[16/10]">
+      <Link to={`/${post.urltitle || post.slug}`} className="block overflow-hidden rounded-lg mb-3 bg-slate-100 dark:bg-slate-800 aspect-[3/2]">
         <img
           src={img}
           alt={post.title}

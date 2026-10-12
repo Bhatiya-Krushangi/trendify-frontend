@@ -43,26 +43,26 @@ const Home = () => {
           {featured && (
             <Link
               to={`/${featured.urltitle || featured.slug}`}
-              className="relative rounded-xl overflow-hidden group h-[420px] block shadow-sm hover:shadow-xl transition-shadow duration-300"
+              className="relative rounded-xl overflow-hidden group aspect-[3/2] w-full block shadow-sm hover:shadow-xl transition-shadow duration-300"
             >
               <img
-                src={(featured.coverImage || featured.thumbnailImage) ? assetUrl(featured.coverImage || featured.thumbnailImage) : FALLBACK_IMG}
+                src={(featured.thumbnailImage || featured.coverImage) ? assetUrl(featured.thumbnailImage || featured.coverImage) : FALLBACK_IMG}
                 alt={featured.title}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                className="w-full h-full object-cover transition-transform duration-300"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/75 via-60% to-transparent" />
-              <div className="absolute bottom-0 p-6 text-white z-10">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 via-40% to-transparent" />
+              <div className="absolute bottom-0 p-4 sm:p-6 text-white z-10 w-full">
                 <span
-                  className="inline-block text-[11px] font-bold uppercase tracking-wide px-2.5 py-1 rounded mb-3 shadow-sm"
+                  className="inline-block text-[11px] font-bold uppercase tracking-wide px-2.5 py-1 rounded mb-2 sm:mb-3 shadow-sm"
                   style={{ backgroundColor: featured.category?.color || "#4f46e5" }}
                 >
                   <Translate>{featured.category?.name}</Translate>
                 </span>
-                <h1 className="text-2xl md:text-3xl font-display font-bold leading-tight mb-3 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
+                <h1 className="text-xl sm:text-2xl md:text-3xl font-display font-bold leading-tight mb-2 sm:mb-3 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] line-clamp-2">
                   <Translate>{featured.title}</Translate>
                 </h1>
 
-                <p className="text-sm text-slate-100 line-clamp-2 max-w-xl drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)] font-medium">
+                <p className="text-xs sm:text-sm text-slate-100 line-clamp-2 max-w-xl drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)] font-medium">
                   <Translate>{featured.excerpt}</Translate>
                 </p>
               </div>
@@ -79,7 +79,7 @@ const Home = () => {
                 <img
                   src={(post.thumbnailImage || post.coverImage) ? assetUrl(post.thumbnailImage || post.coverImage) : FALLBACK_IMG}
                   alt={post.title}
-                  className="w-24 h-20 object-cover rounded-lg shrink-0"
+                  className="w-24 aspect-[3/2] object-cover rounded-lg shrink-0"
                 />
                 <div>
                   <span className="text-[10px] font-bold uppercase tracking-wide" style={{ color: post.category?.color }}>
