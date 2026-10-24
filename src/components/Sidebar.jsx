@@ -6,6 +6,8 @@ import AdSlot from "./AdSlot";
 import { useSettings } from "../hooks/useSettings";
 import { useLanguage } from "../context/LanguageContext";
 
+import AdsterraSlot from "./AdsterraSlot";
+
 const Sidebar = ({ variant = "full" }) => {
   const [trending, setTrending] = useState([]);
   const { settings } = useSettings();
@@ -18,13 +20,18 @@ const Sidebar = ({ variant = "full" }) => {
   const adsEnabled = !!settings?.adsenseEnabled && !!settings?.adsenseClientId;
 
   return (
-    <aside className="flex flex-col gap-6">
-      <AdSlot
-        type="rectangle"
-        enabled={adsEnabled}
-        clientId={settings?.adsenseClientId}
-        slotId={settings?.adSlots?.rectangle}
-      />
+    <aside className="h-full flex flex-col gap-6">
+      {/* Adsterra Banner 300x250 (300x250_1 • ID: 31895009) */}
+      <AdsterraSlot unitKey="banner300x250" />
+
+      {adsEnabled && (
+        <AdSlot
+          type="rectangle"
+          enabled={adsEnabled}
+          clientId={settings?.adsenseClientId}
+          slotId={settings?.adSlots?.rectangle}
+        />
+      )}
 
       <div className="card-surface p-4">
         <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-brand-600 dark:text-brand-400 mb-4">
@@ -40,7 +47,15 @@ const Sidebar = ({ variant = "full" }) => {
         </div>
       </div>
 
+      {/* Sticky Sidebar Ads Container: Only on full variant (long blog articles) */}
       {variant === "full" && (
+        <div className="sticky top-20 flex flex-col gap-6 items-center pb-8">
+          <AdsterraSlot unitKey="banner300x250" title="Sponsored" className="my-0" />
+          <AdsterraSlot unitKey="banner300x250" title="Advertisement" className="my-0" />
+        </div>
+      )}
+
+      {variant === "full" && adsEnabled && (
         <AdSlot
           type="skyscraper"
           enabled={adsEnabled}

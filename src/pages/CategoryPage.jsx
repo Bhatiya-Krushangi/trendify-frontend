@@ -55,7 +55,7 @@ const CategoryPage = () => {
   }
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-8 items-start">
+    <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-8">
       <div>
         <div className="mb-6 pb-5 border-b border-slate-200 dark:border-slate-700">
           <span className="text-xs font-bold uppercase tracking-wide" style={{ color: category?.color || "#4f46e5" }}>
@@ -90,8 +90,8 @@ const CategoryPage = () => {
                 key={p}
                 onClick={() => setPage(p)}
                 className={`w-9 h-9 rounded-md text-sm font-medium transition-colors ${p === page
-                    ? "bg-brand-600 text-white"
-                    : "bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700"
+                  ? "bg-brand-600 text-white"
+                  : "bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700"
                   }`}
               >
                 {p}

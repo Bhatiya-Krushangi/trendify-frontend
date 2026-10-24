@@ -5,6 +5,7 @@ import api from "../api/axios";
 import NewsCard from "../components/NewsCard";
 import Sidebar from "../components/Sidebar";
 import AdSlot from "../components/AdSlot";
+import AdsterraSlot from "../components/AdsterraSlot";
 import { assetUrl } from "../api/axios";
 import { useSettings } from "../hooks/useSettings";
 import { useLanguage } from "../context/LanguageContext";
@@ -39,59 +40,67 @@ const Home = () => {
   return (
     <div className="flex flex-col gap-10">
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-6 items-start">
-        <div className="grid grid-cols-1 md:grid-cols-[1.5fr_1fr] gap-5">
-          {featured && (
-            <Link
-              to={`/${featured.urltitle || featured.slug}`}
-              className="relative rounded-xl overflow-hidden group aspect-[3/2] w-full block shadow-sm hover:shadow-xl transition-shadow duration-300"
-            >
-              <img
-                src={(featured.thumbnailImage || featured.coverImage) ? assetUrl(featured.thumbnailImage || featured.coverImage) : FALLBACK_IMG}
-                alt={featured.title}
-                className="w-full h-full object-cover transition-transform duration-300"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 via-40% to-transparent" />
-              <div className="absolute bottom-0 p-4 sm:p-6 text-white z-10 w-full">
-                <span
-                  className="inline-block text-[11px] font-bold uppercase tracking-wide px-2.5 py-1 rounded mb-2 sm:mb-3 shadow-sm"
-                  style={{ backgroundColor: featured.category?.color || "#4f46e5" }}
-                >
-                  <Translate>{featured.category?.name}</Translate>
-                </span>
-                <h1 className="text-xl sm:text-2xl md:text-3xl font-display font-bold leading-tight mb-2 sm:mb-3 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] line-clamp-2">
-                  <Translate>{featured.title}</Translate>
-                </h1>
-
-                <p className="text-xs sm:text-sm text-slate-100 line-clamp-2 max-w-xl drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)] font-medium">
-                  <Translate>{featured.excerpt}</Translate>
-                </p>
-              </div>
-            </Link>
-          )}
-
-          <div className="flex flex-col gap-4">
-            {sideStories.map((post) => (
+        <div className="flex flex-col gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-[1.5fr_1fr] gap-5">
+            {featured && (
               <Link
-                key={post._id}
-                to={`/${post.urltitle || post.slug}`}
-                className="flex gap-3 group card-surface p-2.5 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
+                to={`/${featured.urltitle || featured.slug}`}
+                className="relative rounded-xl overflow-hidden group aspect-[3/2] w-full block shadow-sm hover:shadow-xl transition-shadow duration-300"
               >
                 <img
-                  src={(post.thumbnailImage || post.coverImage) ? assetUrl(post.thumbnailImage || post.coverImage) : FALLBACK_IMG}
-                  alt={post.title}
-                  className="w-24 aspect-[3/2] object-cover rounded-lg shrink-0"
+                  src={(featured.thumbnailImage || featured.coverImage) ? assetUrl(featured.thumbnailImage || featured.coverImage) : FALLBACK_IMG}
+                  alt={featured.title}
+                  className="w-full h-full object-cover transition-transform duration-300"
                 />
-                <div>
-                  <span className="text-[10px] font-bold uppercase tracking-wide" style={{ color: post.category?.color }}>
-                    <Translate>{post.category?.name}</Translate>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 via-40% to-transparent" />
+                <div className="absolute bottom-0 p-4 sm:p-6 text-white z-10 w-full">
+                  <span
+                    className="inline-block text-[11px] font-bold uppercase tracking-wide px-2.5 py-1 rounded mb-2 sm:mb-3 shadow-sm"
+                    style={{ backgroundColor: featured.category?.color || "#4f46e5" }}
+                  >
+                    <Translate>{featured.category?.name}</Translate>
                   </span>
-                  <p className="text-sm font-semibold leading-snug line-clamp-2 text-slate-900 dark:text-slate-100 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
-                    <Translate>{post.title}</Translate>
-                  </p>
+                  <h1 className="text-xl sm:text-2xl md:text-3xl font-display font-bold leading-tight mb-2 sm:mb-3 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] line-clamp-2">
+                    <Translate>{featured.title}</Translate>
+                  </h1>
 
+                  <p className="text-xs sm:text-sm text-slate-100 line-clamp-2 max-w-xl drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)] font-medium">
+                    <Translate>{featured.excerpt}</Translate>
+                  </p>
                 </div>
               </Link>
-            ))}
+            )}
+
+            <div className="flex flex-col gap-4">
+              {sideStories.map((post) => (
+                <Link
+                  key={post._id}
+                  to={`/${post.urltitle || post.slug}`}
+                  className="flex gap-3 group card-surface p-2.5 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
+                >
+                  <img
+                    src={(post.thumbnailImage || post.coverImage) ? assetUrl(post.thumbnailImage || post.coverImage) : FALLBACK_IMG}
+                    alt={post.title}
+                    className="w-24 aspect-[3/2] object-cover rounded-lg shrink-0"
+                  />
+                  <div>
+                    <span className="text-[10px] font-bold uppercase tracking-wide" style={{ color: post.category?.color }}>
+                      <Translate>{post.category?.name}</Translate>
+                    </span>
+                    <p className="text-sm font-semibold leading-snug line-clamp-2 text-slate-900 dark:text-slate-100 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
+                      <Translate>{post.title}</Translate>
+                    </p>
+
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* Advertisement Section: 2 banner blocks side by side */}
+          <div className="w-full flex flex-wrap items-center justify-center gap-4 sm:gap-6 p-3 rounded-xl bg-white/60 dark:bg-slate-800/40 border border-slate-200/60 dark:border-slate-800/80 shadow-xs">
+            <AdsterraSlot unitKey="banner300x250" className="my-0" />
+            <AdsterraSlot unitKey="banner300x250" className="my-0" />
           </div>
         </div>
 
@@ -111,22 +120,36 @@ const Home = () => {
               <NewsCard key={post._id} post={post} />
             ))}
           </div>
-          <AdSlot
-            type="skyscraper"
-            enabled={adsEnabled}
-            clientId={settings?.adsenseClientId}
-            slotId={settings?.adSlots?.skyscraper}
-            className="hidden lg:flex"
-          />
+          <div className="flex flex-col items-center gap-6">
+            {/* Adsterra 300x250 Banner Slot (Above) */}
+            <AdsterraSlot unitKey="banner300x250" title="Sponsored" className="my-0" />
+
+            {/* Adsterra 300x250 Banner Slot (Below) */}
+            <AdsterraSlot unitKey="banner300x250" title="Advertisement" className="my-0" />
+            {adsEnabled && (
+              <AdSlot
+                type="skyscraper"
+                enabled={adsEnabled}
+                clientId={settings?.adsenseClientId}
+                slotId={settings?.adSlots?.skyscraper}
+                className="hidden lg:flex"
+              />
+            )}
+          </div>
         </div>
       </section>
 
-      <AdSlot
-        type="leaderboard"
-        enabled={adsEnabled}
-        clientId={settings?.adsenseClientId}
-        slotId={settings?.adSlots?.leaderboardMid}
-      />
+      {/* Adsterra Native Banner (NativeBanner_1 • ID: 31895008) */}
+      <AdsterraSlot unitKey="nativeBanner" title="Sponsored Content" />
+
+      {adsEnabled && (
+        <AdSlot
+          type="leaderboard"
+          enabled={adsEnabled}
+          clientId={settings?.adsenseClientId}
+          slotId={settings?.adSlots?.leaderboardMid}
+        />
+      )}
 
       <section>
         <h2 className="text-xl font-bold border-l-4 border-brand-600 pl-3 mb-5 text-slate-900 dark:text-white">{t("home.featuredCategories")}</h2>

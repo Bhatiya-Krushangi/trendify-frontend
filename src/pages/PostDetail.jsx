@@ -5,6 +5,7 @@ import api, { assetUrl } from "../api/axios";
 import Sidebar from "../components/Sidebar";
 import NewsCard from "../components/NewsCard";
 import AdSlot from "../components/AdSlot";
+import AdsterraSlot from "../components/AdsterraSlot";
 import LoginDialog from "../components/LoginDialog";
 import { useSettings } from "../hooks/useSettings";
 import { useUserAuth } from "../context/UserAuthContext";
@@ -92,8 +93,64 @@ const PostDetail = () => {
   const inputClass =
     "border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 placeholder:text-slate-400 dark:placeholder:text-slate-500";
 
+  // Render blog content with in-article advertisement blocks inserted between paragraphs
+  const renderContentWithInArticleAds = (html) => {
+    if (!html) return null;
+    const rawParts = html.split(/<\/p>/i);
+    // Filter out trailing empty strings
+    const parts = rawParts.filter((p, idx) => idx < rawParts.length - 1 || p.trim().length > 0);
+
+    if (parts.length <= 2) {
+      return (
+        <div>
+          <div className="prose-content" dangerouslySetInnerHTML={{ __html: html }} />
+          <div className="my-6 flex flex-wrap items-center justify-center gap-4 sm:gap-6 py-3 px-4 rounded-xl bg-slate-50/70 dark:bg-slate-800/40 border border-slate-200/60 dark:border-slate-800/80 shadow-xs">
+            <AdsterraSlot unitKey="banner300x250" title="Advertisement" className="my-0" />
+            <AdsterraSlot unitKey="banner300x250" title="Sponsored" className="my-0" />
+          </div>
+        </div>
+      );
+    }
+
+    const insertPoint1 = Math.min(2, Math.floor(parts.length / 3));
+    const hasSecondAd = parts.length >= 6;
+    const insertPoint2 = hasSecondAd ? Math.min(parts.length - 2, insertPoint1 + 4) : -1;
+
+    const part1 = parts.slice(0, insertPoint1).join("</p>") + "</p>";
+    const part2 = hasSecondAd
+      ? parts.slice(insertPoint1, insertPoint2).join("</p>") + "</p>"
+      : parts.slice(insertPoint1).join("</p>");
+    const part3 = hasSecondAd ? parts.slice(insertPoint2).join("</p>") : null;
+
+    return (
+      <div className="flex flex-col">
+        <div className="prose-content" dangerouslySetInnerHTML={{ __html: part1 }} />
+
+        {/* In-Article Advertisement: 2 Blocks Side by Side */}
+        <div className="my-6 flex flex-wrap items-center justify-center gap-4 sm:gap-6 py-3 px-4 rounded-xl bg-slate-50/70 dark:bg-slate-800/40 border border-slate-200/60 dark:border-slate-800/80 shadow-xs">
+          <AdsterraSlot unitKey="banner300x250" title="Advertisement" className="my-0" />
+          <AdsterraSlot unitKey="banner300x250" title="Sponsored" className="my-0" />
+        </div>
+
+        <div className="prose-content" dangerouslySetInnerHTML={{ __html: part2 }} />
+
+        {hasSecondAd && (
+          <>
+            {/* In-Article Advertisement 2: 2 Blocks Side by Side */}
+            <div className="my-6 flex flex-wrap items-center justify-center gap-4 sm:gap-6 py-3 px-4 rounded-xl bg-slate-50/70 dark:bg-slate-800/40 border border-slate-200/60 dark:border-slate-800/80 shadow-xs">
+              <AdsterraSlot unitKey="banner300x250" title="Advertisement" className="my-0" />
+              <AdsterraSlot unitKey="banner300x250" title="Sponsored" className="my-0" />
+            </div>
+
+            <div className="prose-content" dangerouslySetInnerHTML={{ __html: part3 }} />
+          </>
+        )}
+      </div>
+    );
+  };
+
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-8 items-start">
+    <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-8">
       <article>
         {post.category?.slug ? (
           <Link
@@ -125,7 +182,8 @@ const PostDetail = () => {
           />
         </div>
 
-        <div className="prose-content" dangerouslySetInnerHTML={{ __html: translatedContent }} />
+        {/* Blog Article Content with In-Article Ad Blocks */}
+        {renderContentWithInArticleAds(translatedContent)}
 
         {post.tags?.length > 0 && (
           <div className="flex flex-wrap gap-2 mt-6">
@@ -142,13 +200,24 @@ const PostDetail = () => {
           <a href={`https://linkedin.com/sharing/share-offsite/?url=${shareUrl}`} target="_blank" rel="noreferrer" className="p-2 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-full hover:bg-brand-600 hover:text-white transition"><Linkedin size={15} /></a>
         </div>
 
-        <AdSlot
-          type="leaderboard"
-          enabled={adsEnabled}
-          clientId={settings?.adsenseClientId}
-          slotId={settings?.adSlots?.leaderboardMid}
-          className="my-8"
-        />
+        {/* Adsterra Native Banner (NativeBanner_1 • ID: 31895008) - Best Destination: Directly Below Article */}
+        <AdsterraSlot unitKey="nativeBanner" title="Recommended Stories" />
+
+        {/* Adsterra Banner 300x250 (2 Blocks Side by Side) */}
+        <div className="flex flex-wrap justify-center gap-4 sm:gap-6 my-6 p-3 rounded-xl bg-slate-50/70 dark:bg-slate-800/40 border border-slate-200/60 dark:border-slate-800/80 shadow-xs">
+          <AdsterraSlot unitKey="banner300x250" title="Advertisement" className="my-0" />
+          <AdsterraSlot unitKey="banner300x250" title="Sponsored" className="my-0" />
+        </div>
+
+        {adsEnabled && (
+          <AdSlot
+            type="leaderboard"
+            enabled={adsEnabled}
+            clientId={settings?.adsenseClientId}
+            slotId={settings?.adSlots?.leaderboardMid}
+            className="my-8"
+          />
+        )}
 
         {related.length > 0 && (
           <section className="mt-10">
